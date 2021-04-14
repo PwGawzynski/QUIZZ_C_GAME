@@ -14,7 +14,8 @@ struct questions
 
 typedef struct questions* p_questions;
 typedef struct questions** ref_questions;
-
+p_questions head_of_questions;
+p_questions tmp_head;
 struct questions_tmp
 {
 	int id;
@@ -39,7 +40,9 @@ void load_mem_for_questions_ptrs()
 	tmp_question.answer_b = (const char*)malloc(1); 
 	tmp_question.answer_c = (const char*)malloc(1); 
 	tmp_question.answer_d = (const char*)malloc(1); 
-	tmp_question.correct = (const char*)malloc(1); 
+	tmp_question.correct = (const char*)malloc(1);
+
+	
 }
 void kill_mem_for_questions_ptrs()
 {

@@ -22,6 +22,8 @@ int main() {
     ALLEGRO_DISPLAY* display = NULL;
     ALLEGRO_FONT* font = NULL;
     ALLEGRO_BITMAP* background = NULL;
+    head_of_questions = NULL;
+    tmp_head = NULL;
 
 	
     //allegro_game_init(&timer, &display, &queue, &font, &background, &resolution_x, &resolution_y, &FPS);
