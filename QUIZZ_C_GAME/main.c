@@ -14,24 +14,26 @@ unsigned int resolution_x = 1920;
 unsigned int resolution_y = 1080;
 // ____FUNCTION SECTION____ //
 
-//test
 
 int main() {
     ALLEGRO_TIMER* timer = NULL;
     ALLEGRO_EVENT_QUEUE* queue = NULL;
     ALLEGRO_DISPLAY* display = NULL;
     ALLEGRO_FONT* font = NULL;
-    ALLEGRO_BITMAP* background = NULL;
+    ALLEGRO_BITMAP* main_menu = NULL;
+    ALLEGRO_BITMAP* game_mode_menu = NULL;
 
 	
-    //allegro_game_init(&timer, &display, &queue, &font, &background, &resolution_x, &resolution_y, &FPS);
-    load_saved_info();
-    scan_file();
-	//init_menu(&timer, &display, &queue, &font, &background, &resolution_x, &resolution_y, &FPS);
-    /*al_rest(15.0);
+    allegro_game_init(&timer, &display, &queue, &font, &main_menu, &game_mode_menu ,&resolution_x, &resolution_y, &FPS);
+    //load_saved_info();
+    //scan_file();
+	init_menu(&timer, &display, &queue, &font, &main_menu, &game_mode_menu, &resolution_x, &resolution_y, &FPS);
+    al_rest(15.0);
     al_destroy_font(font);
+    al_destroy_bitmap(main_menu);
+    al_destroy_bitmap(game_mode_menu);
     al_destroy_display(display);
     al_destroy_timer(timer);
-    al_destroy_event_queue(queue);*/
+    al_destroy_event_queue(queue);
     return 0;
 }
