@@ -14,7 +14,7 @@ unsigned int resolution_x = 1920;
 unsigned int resolution_y = 1080;
 // ____FUNCTION SECTION____ //
 
-
+//test
 
 int main() {
     ALLEGRO_TIMER* timer = NULL;
