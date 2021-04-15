@@ -16,6 +16,7 @@ typedef struct questions* p_questions;
 typedef struct questions** ref_questions;
 p_questions head_of_questions;
 p_questions tmp_head;
+
 struct questions_tmp
 {
 	int id;
