@@ -22,16 +22,17 @@ int main() {
     ALLEGRO_FONT* font = NULL;
     ALLEGRO_BITMAP* main_menu = NULL;
     ALLEGRO_BITMAP* game_mode_menu = NULL;
-
+    ALLEGRO_BITMAP* menu_interface = NULL;
 	
-    allegro_game_init(&timer, &display, &queue, &font, &main_menu, &game_mode_menu ,&resolution_x, &resolution_y, &FPS);
+    allegro_game_init(&timer, &display, &queue, &font, &main_menu, &game_mode_menu ,&menu_interface ,&resolution_x, &resolution_y, &FPS);
     //load_saved_info();
     //scan_file();
-	init_menu(&timer, &display, &queue, &font, &main_menu, &game_mode_menu, &resolution_x, &resolution_y, &FPS);
+	init_menu(&timer, &display, &queue, &font, &main_menu, &game_mode_menu, &menu_interface, &resolution_x, &resolution_y, &FPS);
     al_rest(15.0);
     al_destroy_font(font);
     al_destroy_bitmap(main_menu);
     al_destroy_bitmap(game_mode_menu);
+    al_destroy_bitmap(menu_interface);
     al_destroy_display(display);
     al_destroy_timer(timer);
     al_destroy_event_queue(queue);
