@@ -18,7 +18,6 @@ void create_list();
 p_questions create_head(p_questions head);
 void create_next_list_el(ref_questions el);
 bool is_id_in_array(int* array, int id);
-
 void load_saved_info()
 {
 	file = fopen("database.bin", "rb+");
@@ -43,38 +42,39 @@ void scan_file()
 
 void get_quest_from_usr()
 {
-	
+	static char debug[] = { "CYHagkDrDicmaRQJkyovSqCpOHMqNVDRELVngDSbSSylMMDzGBUmlukkMnpOZuHdakEgvsyNRsBvxESdNCiKaxcsiPftWtnCwSvV\n\0" };
 	// clears stdin buffer from \n char which has left 
 	fseek(stdin, 0, SEEK_END);
 	
 	printf("Wprowadz pytanie: \n\n");
-	tmp_question.question = read_str();
+	tmp_question.question = debug;//read_str();
 
 	printf("\n");
 
 	printf("Wprowadz odpowiedz A: ");
-	tmp_question.answer_a = read_str();
+	tmp_question.answer_a = debug;//read_str();
 	
 	printf("\n");
 
 	printf("Wprowadz odpowiedz B: ");
-	tmp_question.answer_b = read_str();
+	tmp_question.answer_b = debug;//read_str();
 	
 	printf("\n");
 
 	printf("Wprowadz odpowiedz C: ");
-	tmp_question.answer_c = read_str();
+	tmp_question.answer_c = debug;//read_str();
 	
 	printf("\n");
 
 	printf("Wprowadz odpowiedz D: ");
-	tmp_question.answer_d = read_str();
+	tmp_question.answer_d = debug; //read_str();
 	
 	printf("\n");
 
-	printf("Wprowadz oznaczenie poprawnej odpowiedzi: ");
-	scanf("%c", tmp_question.correct);
-
+	//printf("Wprowadz oznaczenie poprawnej odpowiedzi: ");
+	//scanf("%c", tmp_question.correct);
+	static char odp[] = { 'A' };
+	tmp_question.correct = odp;
 	printf("\n");
 	
 }
@@ -94,7 +94,7 @@ void add_questions()
 		
 		get_quest_from_usr();
 		write_to_file();
-		free_all_allocated_strings();
+		//free_all_allocated_strings();
 		questions_number--;
 	}
 }
@@ -140,7 +140,7 @@ void write_to_file()
 }
 void read_from_file()
 {
-	int ids_tab[10]={ 0 };
+	int ids_tab[1000]={ 0 };
 	int struct_size=0;
 	int number_of_struct;
 	int random_number;
@@ -212,7 +212,7 @@ void read_from_file()
 		ids_tab[tab_counter] = tmp_question.id;
 		tab_counter++;
 		//break if all was read 
-		if (ids_tab[9])break;
+		if (ids_tab[999])break;
 		
 		create_list();
 		if (random_number==number_of_struct)
