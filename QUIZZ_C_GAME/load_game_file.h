@@ -147,10 +147,11 @@ void read_from_file()
 	int random_number_next;
 	int el_counter = 0;
 	int tab_counter = 0;
+	int debug_position_crs;
 	bool flag_end_of_struct=false;
 	fread(&number_of_struct, sizeof(int), 1, file);
 	srand(time(NULL));
-	random_number = 15;//rand() % number_of_struct + 1;
+	random_number = rand() % number_of_struct + 1;
 	while (fread(&tmp_question.id, sizeof(int), 1, file))
 	{
 		el_counter = 0;
@@ -162,8 +163,9 @@ void read_from_file()
 				fread(&struct_size,
 					sizeof(int), 1, file);
 			}
+			
 			flag_end_of_struct = false; //change 
-			fseek(file, struct_size, SEEK_CUR);//uawazaj
+			fseek(file, struct_size, SEEK_CUR);// be careful 
 			if (el_counter == 6) {
 				fread(&tmp_question.id, sizeof(int), 1, file);
 				fread(&struct_size, sizeof(int), 1, file);
@@ -173,7 +175,7 @@ void read_from_file()
 		}
 		
 		
-		//fread(&struct_size, sizeof(int), 1, file);
+		
 		
 		printf("%d\n", tmp_question.id);
 		
@@ -225,7 +227,9 @@ void read_from_file()
 			random_number = random_number_next;
 			while (is_id_in_array(ids_tab, random_number))
 				random_number = rand() % number_of_struct + 1;
-
+			//even if the number has been cheecked the new number can be bigger or smaller then last read struct and this occurred infinite loop
+			if (random_number > tmp_question.id);
+			else fseek(file, sizeof(int), SEEK_SET);
 			flag_end_of_struct = false;
 		}else
 		{
