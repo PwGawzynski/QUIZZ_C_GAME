@@ -1,7 +1,7 @@
 // ____ALLEGRO HEADERS____ //
-#include <stdio.h>
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/mouse.h>
 #include <allegro5/allegro_image.h>
@@ -26,7 +26,12 @@ void must_init(bool test, const char* description)
 /// <param name="queue">POINTER TO QUEUE</param>
 /// <param name="font">POINTER TO FONT</param>
 /// <param name="resolution_x">RESOLUTION OF DISPLAY</param>
-void allegro_game_init(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display, ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** bg, unsigned int* resolution_x, unsigned int* resolution_y,  float* FPS) {
+
+void allegro_game_init(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
+    ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu, 
+    ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface,
+    unsigned int* resolution_x, unsigned int* resolution_y, float* FPS) {
+
     //----Allegro & addons init----//
     must_init(al_init(), "allegro");
     must_init(al_install_keyboard(), "keyboard");
@@ -43,12 +48,16 @@ void allegro_game_init(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display, ALLEGRO
     must_init(*display, "display");
     *font = al_create_builtin_font();
     must_init(*font, "font");
-    *bg = al_load_bitmap("main_menu_second.jpg");
-    must_init(*bg, "bg_pointer");
+    *main_menu = al_load_bitmap("main_menu.jpg");
+    must_init(*main_menu, "main_menu");
+    *game_mode_menu = al_load_bitmap("game_mode_menu.jpg");
+    must_init(*game_mode_menu, "game_mode_menu");
+    *menu_interface = al_load_bitmap("menu_interface.jpg");
+    must_init(*menu_interface, "menu_interface");
 
     //----DISPLAY SETTINGS----//
     al_set_window_position(*display, 0, 0);
-    al_set_window_title(*display, "THE KNIGHT'S TOUR PROBLEM");
+    al_set_window_title(*display, "QUIZ GAME");
 
     //----GRAPHICAL SETTINGS----//
     al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_SUGGEST);
