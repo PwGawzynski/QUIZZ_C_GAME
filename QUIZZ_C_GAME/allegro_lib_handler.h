@@ -38,6 +38,8 @@ void allegro_game_init(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
     must_init(al_init_primitives_addon(), "primitives");
     must_init(al_install_mouse(), "mouse");
     must_init(al_init_image_addon(), "bg_image");
+    must_init(al_init_font_addon(), "font_addon");
+    must_init(al_init_ttf_addon(), "ttf_addon");
 
     //----POINTER INIT----//
     *timer = al_create_timer(1 / *FPS);
@@ -46,7 +48,7 @@ void allegro_game_init(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
     must_init(*queue, "queue");
     *display = al_create_display(*resolution_x, *resolution_y);
     must_init(*display, "display");
-    *font = al_create_builtin_font();
+    *font = al_load_font("spotify_circular.ttf", 30, 1);
     must_init(*font, "font");
     *main_menu = al_load_bitmap("main_menu.jpg");
     must_init(*main_menu, "main_menu");
@@ -54,6 +56,8 @@ void allegro_game_init(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
     must_init(*game_mode_menu, "game_mode_menu");
     *menu_interface = al_load_bitmap("menu_interface.jpg");
     must_init(*menu_interface, "menu_interface");
+
+ 
 
     //----DISPLAY SETTINGS----//
     al_set_window_position(*display, 0, 0);

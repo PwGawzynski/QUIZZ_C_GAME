@@ -28,6 +28,7 @@ int main() {
     load_saved_info();
     scan_file();
 	init_menu(&timer, &display, &queue, &font, &main_menu, &game_mode_menu, &menu_interface, &resolution_x, &resolution_y, &FPS);
+   
     al_rest(15.0);
     al_destroy_font(font);
     al_destroy_bitmap(main_menu);
