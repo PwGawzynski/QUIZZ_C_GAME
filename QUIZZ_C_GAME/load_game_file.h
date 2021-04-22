@@ -8,7 +8,7 @@ FILE* file;
 /// </summary>
 unsigned int id = 1;
 
-void scan_file();
+void scan_file(); 
 void add_questions();
 void get_quest_from_usr();
 void write_to_file();
