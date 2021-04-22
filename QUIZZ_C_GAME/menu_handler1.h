@@ -1,3 +1,4 @@
+/*
 bool quiz_game_singleplayer(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface,
@@ -12,7 +13,7 @@ bool quiz_game_singleplayer(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	al_destroy_font(font_menu);
 	
 }
-
+*/
 int check_event_click(unsigned int* mouse_x, unsigned int* mouse_y, int* which_menu)
 {
 	if ((*which_menu) == 1)
@@ -55,8 +56,8 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 	case 5: //trening
 		al_draw_bitmap(*menu_interface, 0, 0, 0);
 		al_flip_display();
-		quiz_game_singleplayer(timer, display, queue, font, main_menu,
-			game_mode_menu, menu_interface, resolution_x, resolution_y, FPS, &which_menu);
+		//quiz_game_singleplayer(timer, display, queue, font, main_menu,
+			//game_mode_menu, menu_interface, resolution_x, resolution_y, FPS, &which_menu);
 	break;
 	case 6:
 		printf(" 3 zycia ");

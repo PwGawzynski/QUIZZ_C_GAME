@@ -208,11 +208,12 @@ void read_from_file()
 		fread(tmp_question.correct, sizeof(int), 1, file);
 		printf("%c\n", tmp_question.correct[0]);
 		printf("\n");
+		//break if all was read 
+		if (ids_tab[9])break;
 		//set ids in arr of ids
 		ids_tab[tab_counter] = tmp_question.id;
 		tab_counter++;
-		//break if all was read 
-		if (ids_tab[9])break;
+		
 		
 		create_list();
 		if (random_number==number_of_struct)
