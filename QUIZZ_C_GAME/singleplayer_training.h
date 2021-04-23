@@ -25,8 +25,8 @@ void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 		char tmp_poit_container[100] = { "PUNKTY: " };
 
 
-		al_draw_text(*font, color, *resolution_x / 2, 216 - aling_up,
-			ALLEGRO_ALIGN_CENTER, cp_head->question);
+		string_typewriter(font,cp_head->question, 30, 1362, 432);
+		al_flip_display();
 		al_draw_text(*font, color, *resolution_x / 2, 471 - aling_up,
 			ALLEGRO_ALIGN_CENTER, cp_head->answer_a);
 		al_draw_text(*font, color, *resolution_x / 2, 622 - aling_up,
