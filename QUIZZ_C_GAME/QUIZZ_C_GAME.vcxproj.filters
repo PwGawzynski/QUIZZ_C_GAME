@@ -21,7 +21,7 @@
     <ClInclude Include="allegro_lib_handler.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="menu_handler1.h">
+    <ClInclude Include="main_menu_handler.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="init_structures.h">
@@ -37,6 +37,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="load_game_file.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="singleplayer_training.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="check_event_click.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

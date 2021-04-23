@@ -190,10 +190,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allegro_lib_handler.h" />
+    <ClInclude Include="check_event_click.h" />
     <ClInclude Include="data_structures_wizard.h" />
     <ClInclude Include="init_structures.h" />
     <ClInclude Include="load_game_file.h" />
-    <ClInclude Include="menu_handler1.h" />
+    <ClInclude Include="main_menu_handler.h" />
+    <ClInclude Include="singleplayer_training.h" />
     <ClInclude Include="STATUS.h" />
     <ClInclude Include="strings.h" />
   </ItemGroup>

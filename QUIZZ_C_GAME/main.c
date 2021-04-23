@@ -4,7 +4,8 @@
 #include "data_structures_wizard.h"
 #include "load_game_file.h"
 #include "allegro_lib_handler.h"
-#include "menu_handler1.h"
+#include "singleplayer_training.h"
+#include "main_menu_handler.h"
 
 
 // ____CONSTANTS____ //
