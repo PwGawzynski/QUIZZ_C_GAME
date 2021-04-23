@@ -29,7 +29,7 @@ void must_init(bool test, const char* description)
 
 void allegro_game_init(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
     ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu, 
-    ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface,
+    ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
     unsigned int* resolution_x, unsigned int* resolution_y, float* FPS) {
 
     //----Allegro & addons init----//
@@ -51,12 +51,13 @@ void allegro_game_init(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
     *font = al_load_font("spotify_circular.ttf", 30, 1);
     must_init(*font, "font");
     *main_menu = al_load_bitmap("main_menu.jpg");
-    must_init(*main_menu, "main_menu");
+    must_init(*main_menu, "main_menu PTR");
     *game_mode_menu = al_load_bitmap("game_mode_menu.jpg");
-    must_init(*game_mode_menu, "game_mode_menu");
+    must_init(*game_mode_menu, "game_mode_menu PTR");
     *menu_interface = al_load_bitmap("menu_interface.jpg");
-    must_init(*menu_interface, "menu_interface");
-
+    must_init(*menu_interface, "menu_interface PTR");
+    *scoreBoard = al_load_bitmap("scoreboard.jpg");
+    must_init(*scoreBoard, "score_board PTR");
  
 
     //----DISPLAY SETTINGS----//
