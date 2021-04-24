@@ -25,16 +25,17 @@ void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 		char tmp_poit_container[100] = { "PUNKTY: " };
 
 
-		string_typewriter(font,cp_head->question, 24, 1308,216, *resolution_x/2,140,60);
+		string_typewriter(font, cp_head->question, 24, 1308, 216, *resolution_x / 2 , 140, 60);
 		al_flip_display();
-		string_typewriter(font, cp_head->answer_a, 24, 1308, 216, *resolution_x / 2, 240, 60);
+		string_typewriter(font, cp_head->answer_a, 24, 1308, 134, *resolution_x / 2, 404, 45);
 		al_flip_display();
-		al_draw_text(*font, color, *resolution_x / 2, 622 - aling_up,
-			ALLEGRO_ALIGN_CENTER, cp_head->answer_b);
-		al_draw_text(*font, color, *resolution_x / 2, 774 - aling_up,
-			ALLEGRO_ALIGN_CENTER, cp_head->answer_c);
-		al_draw_text(*font, color, *resolution_x / 2, 926 - aling_up,
-			ALLEGRO_ALIGN_CENTER, cp_head->answer_d);
+		string_typewriter(font, cp_head->answer_b, 24, 1308, 134, *resolution_x / 2, 555, 45);
+		al_flip_display();
+		string_typewriter(font, cp_head->answer_c, 24, 1308, 134, *resolution_x / 2, 707, 45);
+		al_flip_display();
+		string_typewriter(font, cp_head->answer_d, 24, 1308, 134, *resolution_x / 2, 859, 45);
+		al_flip_display();
+
 		al_draw_text(*font, color, 1450, 100,
 			ALLEGRO_ALIGN_CENTER, strcat(tmp_poit_container, itoa(ptk, tmp_int_char, 10)));
 
