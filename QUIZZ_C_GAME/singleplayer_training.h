@@ -25,10 +25,10 @@ void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 		char tmp_poit_container[100] = { "PUNKTY: " };
 
 
-		string_typewriter(font,cp_head->question, 30, 1362, 432);
+		string_typewriter(font,cp_head->question, 24, 1308,216, *resolution_x/2,140,60);
 		al_flip_display();
-		al_draw_text(*font, color, *resolution_x / 2, 471 - aling_up,
-			ALLEGRO_ALIGN_CENTER, cp_head->answer_a);
+		string_typewriter(font, cp_head->answer_a, 24, 1308, 216, *resolution_x / 2, 240, 60);
+		al_flip_display();
 		al_draw_text(*font, color, *resolution_x / 2, 622 - aling_up,
 			ALLEGRO_ALIGN_CENTER, cp_head->answer_b);
 		al_draw_text(*font, color, *resolution_x / 2, 774 - aling_up,
