@@ -6,7 +6,7 @@ void string_typewriter(ALLEGRO_FONT** font, char* string, int font_size,
 	bool flag = true;
 
 	/*allegro color*/
-	ALLEGRO_COLOR color = al_map_rgb(255, 255, 255);
+	ALLEGRO_COLOR color_white = al_map_rgb(255, 255, 255);
 
 	pos_y += margin_up;
 
@@ -19,7 +19,7 @@ void string_typewriter(ALLEGRO_FONT** font, char* string, int font_size,
 		if (flag)
 		{
 			strncpy(tmp_str, string, char_per_line);
-			al_draw_text(*font, color, pos_x, pos_y - (font_size / 2),
+			al_draw_text(*font, color_white , pos_x, pos_y - (font_size / 2),
 				ALLEGRO_ALIGN_CENTER, tmp_str);
 			pos_y += font_size + 5;
 
@@ -27,7 +27,7 @@ void string_typewriter(ALLEGRO_FONT** font, char* string, int font_size,
 		else
 		{
 			strncpy(tmp_str, string, char_per_line);
-			al_draw_text(*font, color, pos_x, pos_y - font_size / 2,
+			al_draw_text(*font, color_white , pos_x, pos_y - font_size / 2,
 				ALLEGRO_ALIGN_CENTER, tmp_str);
 			break;
 		}

@@ -4,6 +4,8 @@ int listener_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
 	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu, bool* singleplayer);
 
+void print_score_singlepalyer(ALLEGRO_FONT** font, int ptk);
+
 void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
@@ -14,16 +16,14 @@ void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_COLOR color = al_map_rgb(255, 255, 255);
 
 	p_questions cp_head = head_of_questions;
-
+	
 	int ptk = 0;
 	char tmp_int_char[10];
 	int returned_from_list = 0;
 	int correct_ans = 0;
 	int aling_up = 15;
-	while (cp_head->next) {
-
-		char tmp_poit_container[100] = { "PUNKTY: " };
-
+	while (cp_head->next) 
+	{
 
 		string_typewriter(font, cp_head->question, 24, 1308, 216, *resolution_x / 2 , 140, 60);
 		al_flip_display();
@@ -36,6 +36,7 @@ void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 		string_typewriter(font, cp_head->answer_d, 24, 1308, 134, *resolution_x / 2, 859, 45);
 		al_flip_display();
 
+		char tmp_poit_container[50] = { "PUNKTY: " };
 		al_draw_text(*font, color, 1450, 100,
 			ALLEGRO_ALIGN_CENTER, strcat(tmp_poit_container, itoa(ptk, tmp_int_char, 10)));
 
@@ -80,5 +81,19 @@ void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	}
 	al_draw_bitmap(*scoreBoard, 0, 0, 0);
 	al_flip_display();
-	/*here add function which will draw score on score board it should take ptk variable and draw it*/
+	print_score_singlepalyer(font, ptk);
+	(*which_menu) = 4;
+}
+
+void print_score_singlepalyer(ALLEGRO_FONT** font, int ptk)
+{
+	ALLEGRO_COLOR color_white = al_map_rgb(255, 255, 255);
+	*font = al_load_font("spotify_circular.ttf", 60, 1);
+	char tmp_poit_container[50] = { "ZDOBYTE PUNKTY: " };
+	char tmp_int_char[10];
+	al_draw_text(*font, color_white, 339, 311,
+	ALLEGRO_ALIGN_LEFT, strcat(tmp_poit_container, itoa(ptk, tmp_int_char, 10)));
+	al_flip_display();
+	*font = al_load_font("spotify_circular.ttf", 30, 1);
+
 }

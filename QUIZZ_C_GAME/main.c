@@ -17,7 +17,8 @@ unsigned int resolution_y = 1080;
 // ____FUNCTION SECTION____ //
 
 
-int main() {
+int main() 
+{
     ALLEGRO_TIMER* timer = NULL;
     ALLEGRO_EVENT_QUEUE* queue = NULL;
     ALLEGRO_DISPLAY* display = NULL;
@@ -32,7 +33,7 @@ int main() {
     scan_file();
 	init_menu(&timer, &display, &queue, &font, &main_menu, &game_mode_menu, &menu_interface, &scoreBoard, &resolution_x, &resolution_y, &FPS);
    
-    al_rest(15.0);
+   // al_rest(15.0);
     al_destroy_font(font);
     al_destroy_bitmap(main_menu);
     al_destroy_bitmap(game_mode_menu);
