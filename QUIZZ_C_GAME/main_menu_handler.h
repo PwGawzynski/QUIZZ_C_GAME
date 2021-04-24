@@ -37,7 +37,7 @@ int singleplayer_forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALL
 int listener_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu, 
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
-	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu,bool *singleplayer)
+	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu, bool *singleplayer)
 {
 	ALLEGRO_EVENT event;
 
