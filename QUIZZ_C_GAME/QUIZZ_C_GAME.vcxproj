@@ -82,6 +82,7 @@
     <Allegro_AddonMemfile>true</Allegro_AddonMemfile>
     <Allegro_AddonFont>true</Allegro_AddonFont>
     <Allegro_AddonColor>true</Allegro_AddonColor>
+    <Allegro_AddonPhysfs>true</Allegro_AddonPhysfs>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -108,6 +109,7 @@
     <Allegro_AddonMemfile>true</Allegro_AddonMemfile>
     <Allegro_AddonFont>true</Allegro_AddonFont>
     <Allegro_AddonColor>true</Allegro_AddonColor>
+    <Allegro_AddonPhysfs>true</Allegro_AddonPhysfs>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -195,6 +197,8 @@
     <ClInclude Include="init_structures.h" />
     <ClInclude Include="load_game_file.h" />
     <ClInclude Include="main_menu_handler.h" />
+    <ClInclude Include="singleplayer_3lifes.h" />
+    <ClInclude Include="singleplayer_hardcore.h" />
     <ClInclude Include="singleplayer_training.h" />
     <ClInclude Include="STATUS.h" />
     <ClInclude Include="strings.h" />

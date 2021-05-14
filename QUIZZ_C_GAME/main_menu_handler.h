@@ -1,8 +1,11 @@
 #pragma once
 #include "check_event_click.h"
+#include "singleplayer_training.h"
+#include "singleplayer_3lifes.h"
+#include "singleplayer_hardcore.h"
 
-/* This function is responsible for singleplayer_forwarding to appropriate functions which serves game modes */
-int singleplayer_forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
+/* This function is responsible for forwarding to appropriate functions which serves game modes */
+int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
 	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu)
@@ -27,10 +30,12 @@ int singleplayer_forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALL
 			game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
 	break;
 	case 6: /* 3 Lifes */
-		printf(" 3 zycia ");
+			singleplayer_3lifes(timer, display, queue, font, main_menu,
+			game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
 	break;
 	case 7: /* Hardcore */
-		printf(" hardcore ");
+			singleplayer_hardcore(timer, display, queue, font, main_menu,
+			game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
 	break;
 	case 12:
 		return 12;
@@ -59,7 +64,7 @@ int listener_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 			mouse_x = event.mouse.x;
 			mouse_y = event.mouse.y;
 			check_returned = check_event_click(&mouse_x, &mouse_y, which_menu);
-			printf("%d", check_returned);
+			printf(" cr: %d \n", check_returned);
 			/* Below check is for single player function which has permission to call listener
 			function as her own. */
 			if (check_returned >= 8 && check_returned <= 11) return check_returned;
@@ -68,7 +73,7 @@ int listener_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 			if (check_returned == 0) return 0;
 			/* Bellow if statement check if listener has been called from init_menu */
 			if (*singleplayer) {
-				if (singleplayer_forwarding(check_returned, timer, display, queue, font, main_menu,
+				if (forwarding(check_returned, timer, display, queue, font, main_menu,
 					game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu)==12)return 1;
 			}
 			break;

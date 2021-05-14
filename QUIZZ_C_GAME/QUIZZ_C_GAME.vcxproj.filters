@@ -48,6 +48,12 @@
     <ClInclude Include="string_typewriter.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="singleplayer_3lifes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="singleplayer_hardcore.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
