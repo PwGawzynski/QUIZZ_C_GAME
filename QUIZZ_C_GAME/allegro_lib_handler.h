@@ -30,7 +30,7 @@ void must_init(bool test, const char* description)
 void allegro_game_init(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
     ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu, 
     ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
-    unsigned int* resolution_x, unsigned int* resolution_y, float* FPS) {
+    ALLEGRO_BITMAP** question_creator, unsigned int* resolution_x, unsigned int* resolution_y, float* FPS) {
 
     //----Allegro & addons init----//
     must_init(al_init(), "allegro");
@@ -58,6 +58,8 @@ void allegro_game_init(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
     must_init(*menu_interface, "menu_interface PTR");
     *scoreBoard = al_load_bitmap("scoreboard.jpg");
     must_init(*scoreBoard, "score_board PTR");
+    *question_creator = al_load_bitmap("question_creator.jpg");
+    must_init(*question_creator, "question_creator PTR");
  
 
     //----DISPLAY SETTINGS----//

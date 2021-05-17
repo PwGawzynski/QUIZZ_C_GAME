@@ -26,8 +26,9 @@ int main()
     ALLEGRO_BITMAP* game_mode_menu = NULL;
     ALLEGRO_BITMAP* menu_interface = NULL;
     ALLEGRO_BITMAP* scoreBoard = NULL;
+    ALLEGRO_BITMAP* question_creator = NULL;
 	
-    allegro_game_init(&timer, &display, &queue, &font, &main_menu, &game_mode_menu ,&menu_interface, &scoreBoard ,&resolution_x, &resolution_y, &FPS);
+    allegro_game_init(&timer, &display, &queue, &font, &main_menu, &game_mode_menu ,&menu_interface, &scoreBoard, &question_creator,&resolution_x, &resolution_y, &FPS);
     load_saved_info();
     scan_file();
 	init_menu(&timer, &display, &queue, &font, &main_menu, &game_mode_menu, &menu_interface, &scoreBoard, &resolution_x, &resolution_y, &FPS);
