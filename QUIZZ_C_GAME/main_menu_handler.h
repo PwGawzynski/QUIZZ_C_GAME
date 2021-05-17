@@ -13,8 +13,11 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 	switch (check_returned)
 	{
 	case 1: /* Singleplayer */
+		*game_mode_menu = al_load_bitmap("game_mode_menu.jpg");
+		must_init(*game_mode_menu, "game_mode_menu PTR");
 		al_draw_bitmap(*game_mode_menu, 0, 0, 0);
 		al_flip_display();
+		al_destroy_bitmap(*game_mode_menu);
 	break;
 	case 2: /* Multiplayer */
 		printf(" wieloosobowy ");
@@ -75,6 +78,7 @@ int listener_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 			if (*singleplayer) {
 				if (forwarding(check_returned, timer, display, queue, font, main_menu,
 					game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu)==12)return 1;
+				al_flush_event_queue(&event);
 			}
 			break;
 		case ALLEGRO_EVENT_DISPLAY_CLOSE:
@@ -91,18 +95,17 @@ void init_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display, ALLEGRO_EVENT_Q
 	ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
 	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS)
 {
-	int a;
 	bool singleplayer = true;
 	int which_menu = 1;
-	al_draw_bitmap(*main_menu, 0, 0, 0);
-	al_flip_display();
-	if ((a=listener_menu(timer, display, queue, font, main_menu,
-		game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y,
-		FPS, &which_menu, &singleplayer)) == 0) {
-		init_menu(timer, display, queue, font, main_menu,
+	int a;
+	do {
+		*main_menu = al_load_bitmap("main_menu.jpg");
+		must_init(*main_menu, "main_menu PTR");
+		al_draw_bitmap(*main_menu, 0, 0, 0);
+		al_flip_display();
+		al_destroy_bitmap(*main_menu);
+		((a = listener_menu(timer, display, queue, font, main_menu,
 			game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y,
-			FPS);
-		return;
-	}
-		return;
+			FPS, &which_menu, &singleplayer)) );
+	}while (!a);
 }
