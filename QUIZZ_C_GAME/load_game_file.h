@@ -24,22 +24,35 @@ void load_saved_info()
 	file = fopen("database.bin", "rb+");
 	must_init_get_info(file, "FILE WITH SAVED QUESTIONS");
 }
-
-int scan_file(int number_of_question_to_read)
+/*to rewrite use id+1*/
+int scan_file(int number_of_question_to_read,int calling_from,int questions_number)
 {
-	int nr_struct;
-	if(file)
-	{
-		nr_struct = read_from_file(number_of_question_to_read);
-		fclose(file);
-		return nr_struct;
-	}
-	else 
+	if (calling_from == 1)
 	{
 		file = fopen("database.bin", "wb+");
 		must_init_get_info(file, "FILE WITH SAVED QUESTIONS");
-		add_questions();
+		fwrite(&questions_number, sizeof(int), 1, file);
 		fclose(file);
+		file = fopen("database.bin", "ab+");
+		must_init_get_info(file, "FILE WITH SAVED QUESTIONS");
+		fseek(file, 0, SEEK_CUR);// be careful 
+
+	}
+	else {
+		int nr_struct;
+		if (file)
+		{
+			nr_struct = read_from_file(number_of_question_to_read);
+			fclose(file);
+			return nr_struct;
+		}
+		else
+		{
+			file = fopen("database.bin", "wb+");
+			must_init_get_info(file, "FILE WITH SAVED QUESTIONS");
+			add_questions();
+			fclose(file);
+		}
 	}
 }
 

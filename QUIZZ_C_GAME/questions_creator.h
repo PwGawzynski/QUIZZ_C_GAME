@@ -77,6 +77,18 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 			printf("CR: %d\n", check_returned);
 
 			/*IF BACK TO MENU'S BEEN CLICKED*/
+			if (check_returned==6)
+			{
+				/*scan_file(0, 1, (id += 1));
+				tmp_head->id = id;
+				tmp_head->question = al_cstr(input_quest);
+				tmp_head->answer_a = al_cstr(input_answer_a);
+				tmp_head->answer_b = al_cstr(input_answer_b);
+				tmp_head->answer_c = al_cstr(input_answer_c);
+				tmp_head->answer_d = al_cstr(input_answer_d);
+				tmp_head->correct = "a";
+				write_to_file();*/
+			}
 			if (check_returned == 7) { done = true; break; }
 			if (check_returned == 1) {
 				window_counter = 0, which_str = 0;

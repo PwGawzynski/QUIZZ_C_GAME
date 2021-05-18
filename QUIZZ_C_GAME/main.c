@@ -31,7 +31,7 @@ int main()
 	
     allegro_game_init(&timer, &display, &queue, &font, &main_menu, &game_mode_menu ,&menu_interface, &scoreBoard, &question_creator,&resolution_x, &resolution_y, &FPS);
     load_saved_info();
-    nr_of_questions_in_base = scan_file(5);
+    nr_of_questions_in_base = scan_file(5,0,0);
     printf("%d\n", nr_of_questions_in_base);
     id = nr_of_questions_in_base+1;
 	init_menu(&timer, &display, &queue, &font, &main_menu, &game_mode_menu, &menu_interface, &scoreBoard, &resolution_x, &resolution_y, &FPS);
