@@ -14,6 +14,7 @@ const float FPS = 30.0;
 const int no_option = 3;
 unsigned int resolution_x = 1920;
 unsigned int resolution_y = 1080;
+unsigned int nr_of_questions_in_base;
 
 
 int main() 
@@ -30,7 +31,9 @@ int main()
 	
     allegro_game_init(&timer, &display, &queue, &font, &main_menu, &game_mode_menu ,&menu_interface, &scoreBoard, &question_creator,&resolution_x, &resolution_y, &FPS);
     load_saved_info();
-    scan_file();
+    nr_of_questions_in_base = scan_file(5);
+    printf("%d\n", nr_of_questions_in_base);
+    id = nr_of_questions_in_base+1;
 	init_menu(&timer, &display, &queue, &font, &main_menu, &game_mode_menu, &menu_interface, &scoreBoard, &resolution_x, &resolution_y, &FPS);
    
    // al_rest(15.0);

@@ -39,7 +39,7 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 	/*MARKING OF THE FIELD TO INSERT*/
 	int window_counter=0;
 	/*FONTS POSITIONS*/
-	int font_position_y[] = { 471, 622, 774, 926 };
+	int font_position_y[] = { 216, 471, 622, 774, 926 };
 	/*VALUE RETURNED FROM CHECK_EVENT_CLICK MEANS WHICH ELEMENT'S BEEN CLICKED*/
 	int check_returned = 0;
 	/*VALUE INFORMING ABOUT CURRENT SCREEN*/
@@ -78,6 +78,29 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 
 			/*IF BACK TO MENU'S BEEN CLICKED*/
 			if (check_returned == 7) { done = true; break; }
+			if (check_returned == 1) {
+				window_counter = 0, which_str = 0;
+				counter = al_ustr_length(input_quest);
+			}else if(check_returned==2)
+			{
+				window_counter = 1, which_str = 1;
+				counter = al_ustr_length(input_answer_a)-1;
+			}
+			else if (check_returned == 3)
+			{
+				window_counter = 2, which_str = 2;
+				counter = al_ustr_length(input_answer_b)-1;
+			}
+			else if (check_returned == 4)
+			{
+				window_counter = 3, which_str = 3;
+				counter = al_ustr_length(input_answer_c)-1;
+			}else if (check_returned == 5)
+			{
+				window_counter = 4, which_str = 4;
+				counter = al_ustr_length(input_answer_d)-1;
+			}
+			
 
 			
 			break;
@@ -95,8 +118,6 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 				{
 					al_draw_bitmap(question_creator, 0, 0, 0);
 					al_ustr_append_chr(input_quest, unichar);
-					quest_writter(&input_quest, font_position_y, resolution_x, resolution_y, &window_counter);
-					al_flip_display();
 					counter++;
 				}
 				/*FILLING ANSWER A*/
@@ -104,8 +125,6 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 				{
 					al_draw_bitmap(question_creator, 0, 0, 0);
 					al_ustr_append_chr(input_answer_a, unichar);
-					quest_writter(&input_answer_a, font_position_y, resolution_x, resolution_y, &window_counter);
-					al_flip_display();
 					counter++;
 				}
 				/*FILING ANSWER B*/
@@ -113,8 +132,6 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 				{
 					al_draw_bitmap(question_creator, 0, 0, 0);
 					al_ustr_append_chr(input_answer_b, unichar);
-					quest_writter(&input_answer_b, font_position_y, resolution_x, resolution_y, &window_counter);
-					al_flip_display();
 					counter++;
 				}
 				/*FILLING ANSWER C*/
@@ -122,8 +139,6 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 				{
 					al_draw_bitmap(question_creator, 0, 0, 0);
 					al_ustr_append_chr(input_answer_c, unichar);
-					quest_writter(&input_answer_c, font_position_y, resolution_x, resolution_y, &window_counter);
-					al_flip_display();
 					counter++;
 				}
 				/*FILLING ANSWER D*/
@@ -131,26 +146,88 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 				{
 					al_draw_bitmap(question_creator, 0, 0, 0);
 					al_ustr_append_chr(input_answer_d, unichar);
-					quest_writter(&input_answer_d, font_position_y, resolution_x, resolution_y, &window_counter);
-					al_flip_display();
 					counter++;
 				}
-				
+				quest_writter(&input_quest, font_position_y, resolution_x, resolution_y, 0);
+				quest_writter(&input_answer_a, font_position_y, resolution_x, resolution_y, 1);
+				quest_writter(&input_answer_b, font_position_y, resolution_x, resolution_y, 2);
+				quest_writter(&input_answer_c, font_position_y, resolution_x, resolution_y, 3);
+				quest_writter(&input_answer_d, font_position_y, resolution_x, resolution_y, 4);
+
+				al_flip_display();
+
 			}
 			else if (event.keyboard.keycode == ALLEGRO_KEY_ENTER)
 			{
 				window_counter++;
-				counter = 0;
-				which_str++;
+				if (window_counter == 0) {
+					window_counter = 0, which_str = 0;
+					counter = al_ustr_length(input_quest);
+				}
+				else if (window_counter == 1)
+				{
+					window_counter = 1, which_str = 1;
+					counter = al_ustr_length(input_answer_a) - 1;
+				}
+				else if (window_counter == 2)
+				{
+					window_counter = 2, which_str = 2;
+					counter = al_ustr_length(input_answer_b) - 1;
+				}
+				else if (window_counter == 3)
+				{
+					window_counter = 3, which_str = 3;
+					counter = al_ustr_length(input_answer_c) - 1;
+				}
+				else if (window_counter == 4)
+				{
+					window_counter = 4, which_str = 4;
+					counter = al_ustr_length(input_answer_d) - 1;
+				}
 				break;
 			}
 			else if (event.keyboard.keycode==ALLEGRO_KEY_BACKSPACE&&counter>=0)
 			{
-				al_ustr_remove_chr(input_quest, counter);
+
+				/*FILLING QUESTION STR*/
+				if (which_str == 0)
+				{
+					printf("\n%d", counter);
+					al_ustr_remove_chr(input_quest, counter);
 					al_draw_bitmap(question_creator, 0, 0, 0);
-					quest_writter(&input_quest, font_position_y, resolution_x, resolution_y, &window_counter);
-				al_flip_display();
+				}
+				/*FILLING ANSWER A*/
+				else if (which_str == 1)
+				{
+					al_ustr_remove_chr(input_answer_a, counter);
+					al_draw_bitmap(question_creator, 0, 0, 0);
+				}
+				/*FILING ANSWER B*/
+				else if (which_str == 2)
+				{
+					al_ustr_remove_chr(input_answer_b, counter);
+					al_draw_bitmap(question_creator, 0, 0, 0);
+				}
+				/*FILLING ANSWER C*/
+				else if (which_str == 3)
+				{
+					al_ustr_remove_chr(input_answer_c, counter);
+					al_draw_bitmap(question_creator, 0, 0, 0);
+				}
+				/*FILLING ANSWER D*/
+				else if (which_str == 4)
+				{
+					al_ustr_remove_chr(input_answer_d, counter);
+					al_draw_bitmap(question_creator, 0, 0, 0);
+				}
+				quest_writter(&input_quest, font_position_y, resolution_x, resolution_y, 0);
+				quest_writter(&input_answer_a, font_position_y, resolution_x, resolution_y, 1);
+				quest_writter(&input_answer_b, font_position_y, resolution_x, resolution_y, 2);
+				quest_writter(&input_answer_c, font_position_y, resolution_x, resolution_y, 3);
+				quest_writter(&input_answer_d, font_position_y, resolution_x, resolution_y, 4);
 				counter--;
+				printf("\n%d", counter);
+				al_flip_display();
 			}
 			break;
 		case ALLEGRO_EVENT_DISPLAY_CLOSE:

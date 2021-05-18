@@ -8,11 +8,11 @@ FILE* file;
 /// </summary>
 unsigned int id = 1;
 
-void scan_file();
+int scan_file();
 void add_questions();
 void get_quest_from_usr();
 void write_to_file();
-void read_from_file();
+int read_from_file(int number_of_question_to_read);
 void free_all_allocated_strings();
 void create_list();
 p_questions create_head(p_questions head);
@@ -25,12 +25,14 @@ void load_saved_info()
 	must_init_get_info(file, "FILE WITH SAVED QUESTIONS");
 }
 
-void scan_file()
+int scan_file(int number_of_question_to_read)
 {
+	int nr_struct;
 	if(file)
 	{
-		read_from_file();
+		nr_struct = read_from_file(number_of_question_to_read);
 		fclose(file);
+		return nr_struct;
 	}
 	else 
 	{
@@ -138,9 +140,10 @@ void write_to_file()
 	fwrite(&struct_size, sizeof(int), 1, file);
 	fwrite(tmp_question.correct, sizeof(int), 1, file);
 }
-void read_from_file()
+int read_from_file(int number_of_question_to_read)
 {
-	int ids_tab[10]={ 0 };
+	int* ids_tab = (int*)malloc(sizeof(int) * number_of_question_to_read);
+	for (int i = number_of_question_to_read; i; i--) ids_tab[i] = 0;
 	int struct_size=0;
 	int number_of_struct;
 	int random_number;
@@ -209,7 +212,7 @@ void read_from_file()
 		printf("%c\n", tmp_question.correct[0]);
 		printf("\n");
 		//break if all was read 
-		if (ids_tab[9])break;
+		if (ids_tab[number_of_question_to_read-1])break;
 		//set ids in arr of ids
 		ids_tab[tab_counter] = tmp_question.id;
 		tab_counter++;
@@ -242,8 +245,9 @@ void read_from_file()
 
 				flag_end_of_struct = false;
 		}
-
 	}
+	return number_of_struct;
+
 }
 void free_all_allocated_strings()
 {
