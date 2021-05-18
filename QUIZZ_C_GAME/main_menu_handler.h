@@ -3,6 +3,7 @@
 #include "singleplayer_training.h"
 #include "singleplayer_3lifes.h"
 #include "singleplayer_hardcore.h"
+#include "questions_creator.h"
 
 /* This function is responsible for forwarding to appropriate functions which serves game modes */
 int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
@@ -20,7 +21,13 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 		printf(" wieloosobowy ");
 	break;
 	case 3: /* Add Question*/
-		printf(" dodaj pytanie ");
+		
+		allegro_questions_creator(resolution_x,resolution_y,queue);
+		*main_menu = al_load_bitmap("main_menu.jpg");
+		must_init(*main_menu, "main_menu PTR");
+		al_draw_bitmap(*main_menu,0,0,0);
+		al_flip_display();
+		al_destroy_bitmap(*main_menu);
 	break;
 	case 4: /* Exit Game */
 		printf(" wyjscie ");
@@ -51,7 +58,6 @@ int listener_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 
 	bool done = false;
 	bool redraw = false;
-	bool flag = true;
 	int check_returned = 0;
 	unsigned int mouse_x, mouse_y, mouse_click;
 	while (1)

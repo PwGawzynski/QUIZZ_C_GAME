@@ -54,6 +54,12 @@
     <ClInclude Include="singleplayer_hardcore.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="questions_creator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="questions_string_writter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">

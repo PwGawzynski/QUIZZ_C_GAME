@@ -58,8 +58,7 @@ void allegro_game_init(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
     must_init(*menu_interface, "menu_interface PTR");
     *scoreBoard = al_load_bitmap("scoreboard.jpg");
     must_init(*scoreBoard, "score_board PTR");
-    *question_creator = al_load_bitmap("question_creator.jpg");
-    must_init(*question_creator, "question_creator PTR");
+    
  
 
     //----DISPLAY SETTINGS----//

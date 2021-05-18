@@ -1,11 +1,12 @@
 #include "STATUS.h"
 #include "init_structures.h"
 #include "strings.h"
-#include "data_structures_wizard.h"
 #include "load_game_file.h"
 #include "allegro_lib_handler.h"
 #include "string_typewriter.h"
 #include "main_menu_handler.h"
+#include "questions_string_writter.h"
+#include "questions_creator.h"
 
 
 // ____CONSTANTS____ //
@@ -13,7 +14,6 @@ const float FPS = 30.0;
 const int no_option = 3;
 unsigned int resolution_x = 1920;
 unsigned int resolution_y = 1080;
-// ____FUNCTION SECTION____ //
 
 
 int main() 
@@ -35,7 +35,6 @@ int main()
    
    // al_rest(15.0);
     al_destroy_font(font);
-    al_destroy_bitmap(main_menu);
     al_destroy_bitmap(game_mode_menu);
     al_destroy_bitmap(menu_interface);
     al_destroy_display(display);
