@@ -35,9 +35,13 @@ int check_event_click(unsigned int* mouse_x, unsigned int* mouse_y, int* which_m
 		/* Question Creator */
 		if (((*mouse_x >= 306) && (*mouse_x <= 1614)) && ((*mouse_y >= 140) && (*mouse_y <= 356))) return 1; // question
 		if (((*mouse_x >= 306) && (*mouse_x <= 1614)) && ((*mouse_y >= 404) && (*mouse_y <= 538))) return 2; // ans a
+		if (((*mouse_x >= 278) && (*mouse_x <= 292)) && ((*mouse_y >= 406) && (*mouse_y <= 540))) return 22;// ans a check
 		if (((*mouse_x >= 306) && (*mouse_x <= 1614)) && ((*mouse_y >= 555) && (*mouse_y <= 689))) return 3;  // ans b
+		if (((*mouse_x >= 278) && (*mouse_x <= 292)) && ((*mouse_y >= 555) && (*mouse_y <= 689))) return 33;  // ans b check
 		if (((*mouse_x >= 306) && (*mouse_x <= 1614)) && ((*mouse_y >= 707) && (*mouse_y <= 841))) return 4; // ans c
+		if (((*mouse_x >= 278) && (*mouse_x <= 292)) && ((*mouse_y >= 707) && (*mouse_y <= 841))) return 44;  // ans c check
 		if (((*mouse_x >= 306) && (*mouse_x <= 1614)) && ((*mouse_y >= 859) && (*mouse_y <= 993))) return 5; // ans d
+		if (((*mouse_x >= 278) && (*mouse_x <= 292)) && ((*mouse_y >= 859) && (*mouse_y <= 933))) return 55;  // ans d check
 		if (((*mouse_x >= 686) && (*mouse_x <= 1031)) && ((*mouse_y >= 57) && (*mouse_y <= 125))) return 6; // add question
 		if (((*mouse_x >= 1048) && (*mouse_x <= 1440)) && ((*mouse_y >= 57) && (*mouse_y <= 125))) return 7; // leave to menu
 	}

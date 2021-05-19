@@ -52,11 +52,23 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 	ALLEGRO_USTR* input_answer_b= al_ustr_new("");
 	ALLEGRO_USTR* input_answer_c= al_ustr_new("");
 	ALLEGRO_USTR* input_answer_d= al_ustr_new("");
+	/*TMP BITMAP HOLDER*/
+	ALLEGRO_BITMAP* tmp;
 	/*MOUSE POSITIONS*/
 	unsigned int mouse_x, mouse_y;
 	/*WHICH_STR VARIABLE TO SAVE INFO WHICH STRING IS FILLED*/
 	int which_str = 0;
-	
+	/*CORRECT ANSWER FLAG*/
+	int correct_flag=0;
+	/*WARNING PLACEHOLDER*/
+	const char* empty = "UZUPELNIJ POLE!!!";
+	/*CORRECT ANSWER RECTANGLE POSITIONS TAB*/
+	int rec_correct[4][4] = 
+	{ 279, 406, 292, 540,
+		278, 555, 292, 689,
+		279, 707, 292, 841,
+		279, 859, 292, 993,
+	};
 	/*END OF LOCALS*/
 
 
@@ -82,21 +94,6 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 				/*check if every field has been filled*/
 				if (al_ustr_length(input_quest) && al_ustr_length(input_answer_a) && al_ustr_length(input_answer_b) &&
 					al_ustr_length(input_answer_c) && al_ustr_length(input_answer_d)) {
-					while (1)
-					{
-						al_wait_for_event(*queue, &event);
-						switch (event.type)
-						{
-							case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
-								check_returned = check_event_click(&mouse_x, &mouse_y, &which_menu);
-								if(check_returned)
-							case ALLEGRO_EVENT_DISPLAY_CLOSE:
-								done = true;
-								break;
-							default: break;
-						}
-						if (done) break;
-					}
 					
 					scan_file(0, 1, (id += 1));
 					fseek(file, 0, SEEK_END);// be careful 
@@ -110,7 +107,30 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 					write_to_file();
 					fclose(file);
 				}
-				else printf("%s", "chuja");
+				else
+				{
+					printf("%s", "chuja");
+
+					if(!(al_ustr_length(input_quest))){
+						quest_writter_empty(&empty, font_position_y, resolution_x, resolution_y, 0);
+
+					}else if (!(al_ustr_length(input_answer_a))) {
+						quest_writter_empty(&empty, font_position_y, resolution_x, resolution_y, 1);
+
+					}else if (!(al_ustr_length(input_answer_b))) {
+						quest_writter_empty(&empty, font_position_y, resolution_x, resolution_y, 2);
+
+					}
+					else if (!(al_ustr_length(input_answer_c))) {
+						quest_writter_empty(&empty, font_position_y, resolution_x, resolution_y, 3);
+
+					}
+					else if (!(al_ustr_length(input_answer_d))) {
+						quest_writter_empty(&empty, font_position_y, resolution_x, resolution_y, 4);
+
+					}
+					al_flip_display();
+				}
 			}
 			if (check_returned == 7) { done = true; break; }
 			if (check_returned == 1) {
@@ -134,6 +154,51 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 			{
 				window_counter = 4, which_str = 4;
 				counter = al_ustr_length(input_answer_d)-1;
+			}
+			else if (check_returned == 22)
+			{
+				if ((correct_flag!=22)||(correct_flag==0))
+				{
+					tmp = al_get_target_bitmap();
+					al_set_target_bitmap(question_creator);
+					correct_flag = 22;
+					al_draw_filled_rectangle(rec_correct[0][0], rec_correct[0][1], rec_correct[0][2], rec_correct[0][3], al_map_rgb(66, 245, 138));
+					al_set_target_bitmap(tmp);
+					al_draw_bitmap(question_creator,0,0,0);
+					al_flip_display();
+					tmp_question.correct = "A";
+				}else
+				{
+					ALLEGRO_BITMAP* tmp = al_get_target_bitmap();
+					al_set_target_bitmap(question_creator);
+					correct_flag = 2;
+					al_draw_filled_rectangle(rec_correct[0][0], rec_correct[0][1], rec_correct[0][2], rec_correct[0][3], al_map_rgb(66, 245, 138));
+					al_set_target_bitmap(tmp);
+					al_draw_bitmap(question_creator, 0, 0, 0);
+					al_flip_display();
+					tmp_question.correct = "A";
+				}
+			}
+			else if (check_returned == 33)
+			{
+				correct_flag = 3;
+				al_draw_filled_rectangle(rec_correct[1][0], rec_correct[1][1], rec_correct[1][2], rec_correct[1][3], al_map_rgb(66, 245, 138));
+				al_flip_display();
+				tmp_question.correct = "B";
+			}
+			else if (check_returned == 44)
+			{
+				correct_flag = 4;
+				al_draw_filled_rectangle(rec_correct[2][0], rec_correct[2][1], rec_correct[2][2], rec_correct[2][3], al_map_rgb(66, 245, 138));
+				al_flip_display();
+				tmp_question.correct = "C";
+			}
+			else if (check_returned == 55)
+			{
+				correct_flag = 5;
+				al_draw_filled_rectangle(rec_correct[3][0], rec_correct[3][1], rec_correct[3][2], rec_correct[3][3], al_map_rgb(66, 245, 138));
+				al_flip_display();
+				tmp_question.correct = "D";
 			}
 			
 
