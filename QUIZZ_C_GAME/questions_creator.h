@@ -79,15 +79,38 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 			/*IF BACK TO MENU'S BEEN CLICKED*/
 			if (check_returned==6)
 			{
-				/*scan_file(0, 1, (id += 1));
-				tmp_head->id = id;
-				tmp_head->question = al_cstr(input_quest);
-				tmp_head->answer_a = al_cstr(input_answer_a);
-				tmp_head->answer_b = al_cstr(input_answer_b);
-				tmp_head->answer_c = al_cstr(input_answer_c);
-				tmp_head->answer_d = al_cstr(input_answer_d);
-				tmp_head->correct = "a";
-				write_to_file();*/
+				/*check if every field has been filled*/
+				if (al_ustr_length(input_quest) && al_ustr_length(input_answer_a) && al_ustr_length(input_answer_b) &&
+					al_ustr_length(input_answer_c) && al_ustr_length(input_answer_d)) {
+					while (1)
+					{
+						al_wait_for_event(*queue, &event);
+						switch (event.type)
+						{
+							case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
+								check_returned = check_event_click(&mouse_x, &mouse_y, &which_menu);
+								if(check_returned)
+							case ALLEGRO_EVENT_DISPLAY_CLOSE:
+								done = true;
+								break;
+							default: break;
+						}
+						if (done) break;
+					}
+					
+					scan_file(0, 1, (id += 1));
+					fseek(file, 0, SEEK_END);// be careful 
+					tmp_question.id = id;
+					tmp_question.question = al_cstr(input_quest);
+					tmp_question.answer_a = al_cstr(input_answer_a);
+					tmp_question.answer_b = al_cstr(input_answer_b);
+					tmp_question.answer_c = al_cstr(input_answer_c);
+					tmp_question.answer_d = al_cstr(input_answer_d);
+					tmp_question.correct = "A";
+					write_to_file();
+					fclose(file);
+				}
+				else printf("%s", "chuja");
 			}
 			if (check_returned == 7) { done = true; break; }
 			if (check_returned == 1) {
