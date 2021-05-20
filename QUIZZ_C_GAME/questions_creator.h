@@ -60,6 +60,7 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 	int which_str = 0;
 	/*CORRECT ANSWER FLAG*/
 	int correct_flag=0;
+	int last_correct_flag=0;
 	/*WARNING PLACEHOLDER*/
 	const char* empty = "UZUPELNIJ POLE!!!";
 	/*CORRECT ANSWER RECTANGLE POSITIONS TAB*/
@@ -157,8 +158,14 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 			}
 			else if (check_returned == 22)
 			{
-				if ((correct_flag!=22)||(correct_flag==0))
+				if ((correct_flag!=22))
 				{
+					al_destroy_bitmap(question_creator);
+					question_creator = al_load_bitmap("question_creator.jpg");
+					must_init(question_creator, "question_creator PTR");
+					al_draw_bitmap(question_creator, 0, 0, 0);
+					
+					
 					tmp = al_get_target_bitmap();
 					al_set_target_bitmap(question_creator);
 					correct_flag = 22;
@@ -167,51 +174,90 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 					al_draw_bitmap(question_creator,0,0,0);
 					al_flip_display();
 					tmp_question.correct = "A";
-				}else
-				{
-					ALLEGRO_BITMAP* tmp = al_get_target_bitmap();
-					al_set_target_bitmap(question_creator);
-					correct_flag = 2;
-					al_draw_filled_rectangle(rec_correct[0][0], rec_correct[0][1], rec_correct[0][2], rec_correct[0][3], al_map_rgb(66, 245, 138));
-					al_set_target_bitmap(tmp);
-					al_draw_bitmap(question_creator, 0, 0, 0);
-					al_flip_display();
-					tmp_question.correct = "A";
 				}
+				printf("na uj dwa razy");
 			}
 			else if (check_returned == 33)
 			{
-				correct_flag = 3;
-				al_draw_filled_rectangle(rec_correct[1][0], rec_correct[1][1], rec_correct[1][2], rec_correct[1][3], al_map_rgb(66, 245, 138));
-				al_flip_display();
-				tmp_question.correct = "B";
+				if ((correct_flag != 33))
+				{
+					al_destroy_bitmap(question_creator);
+					question_creator = al_load_bitmap("question_creator.jpg");
+					must_init(question_creator, "question_creator PTR");
+					al_draw_bitmap(question_creator, 0, 0, 0);
+
+
+					tmp = al_get_target_bitmap();
+					al_set_target_bitmap(question_creator);
+					correct_flag = 33;
+					al_draw_filled_rectangle(rec_correct[1][0], rec_correct[1][1], rec_correct[1][2], rec_correct[1][3], al_map_rgb(66, 245, 138));
+					al_set_target_bitmap(tmp);
+					al_draw_bitmap(question_creator, 0, 0, 0);
+					al_flip_display();
+					tmp_question.correct = "B";
+				}
+				printf("na uj dwa razy");
 			}
 			else if (check_returned == 44)
 			{
-				correct_flag = 4;
-				al_draw_filled_rectangle(rec_correct[2][0], rec_correct[2][1], rec_correct[2][2], rec_correct[2][3], al_map_rgb(66, 245, 138));
-				al_flip_display();
-				tmp_question.correct = "C";
+				if ((correct_flag != 44))
+				{
+					al_destroy_bitmap(question_creator);
+					question_creator = al_load_bitmap("question_creator.jpg");
+					must_init(question_creator, "question_creator PTR");
+					al_draw_bitmap(question_creator, 0, 0, 0);
+
+
+					tmp = al_get_target_bitmap();
+					al_set_target_bitmap(question_creator);
+					correct_flag = 44;
+					al_draw_filled_rectangle(rec_correct[2][0], rec_correct[2][1], rec_correct[2][2], rec_correct[2][3], al_map_rgb(66, 245, 138));
+					al_set_target_bitmap(tmp);
+					al_draw_bitmap(question_creator, 0, 0, 0);
+					al_flip_display();
+					tmp_question.correct = "C";
+				}
+				printf("na uj dwa razy");
 			}
 			else if (check_returned == 55)
 			{
-				correct_flag = 5;
-				al_draw_filled_rectangle(rec_correct[3][0], rec_correct[3][1], rec_correct[3][2], rec_correct[3][3], al_map_rgb(66, 245, 138));
-				al_flip_display();
-				tmp_question.correct = "D";
-			}
-			
+				if ((correct_flag != 55))
+				{
+					al_destroy_bitmap(question_creator);
+					question_creator = al_load_bitmap("question_creator.jpg");
+					must_init(question_creator, "question_creator PTR");
+					al_draw_bitmap(question_creator, 0, 0, 0);
 
-			
+
+					tmp = al_get_target_bitmap();
+					al_set_target_bitmap(question_creator);
+					correct_flag = 55;
+					al_draw_filled_rectangle(rec_correct[3][0], rec_correct[3][1], rec_correct[3][2], rec_correct[3][3], al_map_rgb(66, 245, 138));
+					al_set_target_bitmap(tmp);
+					al_draw_bitmap(question_creator, 0, 0, 0);
+					al_flip_display();
+					tmp_question.correct = "D";
+				}
+				printf("na uj dwa razy");
+			}
+
+			quest_writter(&input_quest, font_position_y, resolution_x, resolution_y, 0);
+			quest_writter(&input_answer_a, font_position_y, resolution_x, resolution_y, 1);
+			quest_writter(&input_answer_b, font_position_y, resolution_x, resolution_y, 2);
+			quest_writter(&input_answer_c, font_position_y, resolution_x, resolution_y, 3);
+			quest_writter(&input_answer_d, font_position_y, resolution_x, resolution_y, 4);
+			al_flip_display();
+			continue;
 			break;
 		case ALLEGRO_EVENT_KEY_CHAR:
 			/*GET KEY CODE*/
 			unichar = event.keyboard.unichar;
+			
 			/*DEBUG KEY CODE*/
 			printf("%d", event.keyboard.unichar);
 
 			/*FIND WHICH KEY'S BEEN TYPED*/
-			if (unichar >= 32 && unichar <= 126)
+			if (unichar >= 32 )
 			{
 				/*FILLING QUESTION STR*/
 				if (which_str == 0)
