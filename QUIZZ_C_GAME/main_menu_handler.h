@@ -19,6 +19,12 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 	break;
 	case 2: /* Multiplayer */
 		printf(" wieloosobowy ");
+		allegro_questions_creator(resolution_x, resolution_y, queue);
+		*main_menu = al_load_bitmap("main_menu.jpg");
+		must_init(*main_menu, "main_menu PTR");
+		al_draw_bitmap(*main_menu, 0, 0, 0);
+		al_flip_display();
+		al_destroy_bitmap(*main_menu);
 	break;
 	case 3: /* Add Question*/
 		
