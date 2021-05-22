@@ -199,6 +199,7 @@
     <ClInclude Include="init_structures.h" />
     <ClInclude Include="load_game_file.h" />
     <ClInclude Include="main_menu_handler.h" />
+    <ClInclude Include="multiplayer_structures.h" />
     <ClInclude Include="questions_creator.h" />
     <ClInclude Include="questions_string_writter.h" />
     <ClInclude Include="singleplayer_3lifes.h" />

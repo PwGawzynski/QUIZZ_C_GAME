@@ -3,10 +3,13 @@
 #include "strings.h"
 #include "load_game_file.h"
 #include "allegro_lib_handler.h"
+#include "take_players_number.h"
+#include "multiplayer_structures.h"
 #include "string_typewriter.h"
 #include "main_menu_handler.h"
 #include "questions_string_writter.h"
 #include "questions_creator.h"
+
 
 
 // ____CONSTANTS____ //

@@ -60,6 +60,9 @@
     <ClInclude Include="questions_string_writter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="multiplayer_structures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">

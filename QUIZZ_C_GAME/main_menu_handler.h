@@ -11,6 +11,9 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
 	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu)
 {
+	int singleplayer = 0;
+	int chk_returned = 0;
+	ALLEGRO_BITMAP* players_nr;
 	switch (check_returned)
 	{
 	case 1: /* Singleplayer */
@@ -19,7 +22,16 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 	break;
 	case 2: /* Multiplayer */
 		printf(" wieloosobowy ");
-		allegro_questions_creator(resolution_x, resolution_y, queue);
+		players_nr=al_load_bitmap("submenu_multiplayer.jpg");
+		must_init(players_nr, "main_menu PTR");
+		al_draw_bitmap(players_nr, 0, 0, 0);
+		al_flip_display();
+		al_destroy_bitmap(players_nr);
+		*which_menu = 6;
+		chk_returned = listener_menu(timer, display, queue, font, main_menu,
+			game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y,
+			FPS, which_menu, &singleplayer);
+		multiplayer_create_structures(resolution_x, resolution_y, chk_returned,queue);
 		*main_menu = al_load_bitmap("main_menu.jpg");
 		must_init(*main_menu, "main_menu PTR");
 		al_draw_bitmap(*main_menu, 0, 0, 0);
@@ -80,6 +92,7 @@ int listener_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 			/* Below check is for single player function which has permission to call listener
 			function as her own. */
 			if (check_returned >= 8 && check_returned <= 11) return check_returned;
+			if (check_returned >= 1 && check_returned <= 3 && *which_menu==6) return check_returned;
 
 			/* here will be next statements for next game modes */
 			if (check_returned == 0) return 0;

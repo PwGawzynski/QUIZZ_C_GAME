@@ -45,4 +45,11 @@ int check_event_click(unsigned int* mouse_x, unsigned int* mouse_y, int* which_m
 		if (((*mouse_x >= 686) && (*mouse_x <= 1031)) && ((*mouse_y >= 57) && (*mouse_y <= 125))) return 6; // add question
 		if (((*mouse_x >= 1048) && (*mouse_x <= 1440)) && ((*mouse_y >= 57) && (*mouse_y <= 125))) return 7; // leave to menu
 	}
+	if ((*which_menu) == 6)
+	{
+		/* Number of players */
+		if (((*mouse_x >= 444) && (*mouse_x <= 1476)) && ((*mouse_y >= 305) && (*mouse_y <= 484))) {  return 2; } // 2 players
+		if (((*mouse_x >= 444) && (*mouse_x <= 1476)) && ((*mouse_y >= 520) && (*mouse_y <= 699))) return 3;  // 3 players
+		if (((*mouse_x >= 444) && (*mouse_x <= 1476)) && ((*mouse_y >= 735) && (*mouse_y <= 914))) return 4; // 4 players
+	}
 }
