@@ -3,9 +3,6 @@
 #include <time.h>
 
 FILE* file;
-/// <summary>
-/// must be from 1!!!
-/// </summary>
 unsigned int id = 1;
 
 int scan_file();

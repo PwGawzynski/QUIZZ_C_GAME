@@ -6,27 +6,6 @@
 #include <allegro5/mouse.h>
 #include <allegro5/allegro_image.h>
 
-/// <summary>
-///  THIS FUNC CHECKS IF INSERTED VALUE HAS BEEN INICIALIZED 
-/// </summary>
-/// <param name="test">FUNC OR POINTER OR VARIABLE, WHICH CAN BE CHECK IN IF STATEMENT</param>
-/// <param name="description">CONSTANT STRING TO DESCRIBE FIRST INSERTED VALUE</param>
-void must_init(bool test, const char* description)
-{
-    if (test) return;
-
-    printf("Couldn't initialize %s\n", description);
-    exit(1);
-}
-/// <summary>
-/// THIS FUNCTION INICIALIZES ALLEGRO LIB AND POINTERS
-/// </summary>
-/// <param name="timer">POINTER TO TIMER</param>
-/// <param name="display">POINTER TO DISPLAY</param>
-/// <param name="queue">POINTER TO QUEUE</param>
-/// <param name="font">POINTER TO FONT</param>
-/// <param name="resolution_x">RESOLUTION OF DISPLAY</param>
-
 void allegro_game_init(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
     ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu, 
     ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
@@ -48,18 +27,13 @@ void allegro_game_init(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
     must_init(*queue, "queue");
     *display = al_create_display(*resolution_x, *resolution_y);
     must_init(*display, "display");
-    *font = al_load_font("spotify_circular.ttf", 30, 1);
-    must_init(*font, "font");
-    *main_menu = al_load_bitmap("main_menu.jpg");
-    must_init(*main_menu, "main_menu PTR");
-    *game_mode_menu = al_load_bitmap("game_mode_menu.jpg");
-    must_init(*game_mode_menu, "game_mode_menu PTR");
-    *menu_interface = al_load_bitmap("menu_interface.jpg");
-    must_init(*menu_interface, "menu_interface PTR");
-    *scoreBoard = al_load_bitmap("scoreboard.jpg");
-    must_init(*scoreBoard, "score_board PTR");
     
- 
+    *font = NULL;
+    *main_menu = NULL;
+    *game_mode_menu = NULL;
+    *menu_interface = NULL;
+    *scoreBoard = NULL;
+
 
     //----DISPLAY SETTINGS----//
     al_set_window_position(*display, 0, 0);

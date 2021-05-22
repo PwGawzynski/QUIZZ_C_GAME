@@ -5,8 +5,14 @@ void singleplayer_3lifes(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
 	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu)
 {
+
+	*font = al_load_font("spotify_circular.ttf", 30, 1);
+	must_init(*font, "font");
+	*menu_interface = al_load_bitmap("menu_interface.jpg");
+	must_init(*menu_interface, "menu_interface PTR");
 	al_draw_bitmap(*menu_interface, 0, 0, 0);
 	al_flip_display();
+	al_destroy_bitmap(*menu_interface);
 	ALLEGRO_COLOR color = al_map_rgb(255, 255, 255);
 	p_questions cp_head = head_of_questions;
 
@@ -66,20 +72,31 @@ void singleplayer_3lifes(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 			resolution_x, resolution_y, FPS, which_menu, &training) == correct_ans)
 		{
 			ptk++;
+			*menu_interface = al_load_bitmap("menu_interface.jpg");
+			must_init(*menu_interface, "menu_interface PTR");
 			al_draw_bitmap(*menu_interface, 0, 0, 0);
 			al_flip_display();
+			al_destroy_bitmap(*menu_interface);
 			cp_head = cp_head->next;
 		}
 		else
 		{
 			lifes--;
+			*menu_interface = al_load_bitmap("menu_interface.jpg");
+			must_init(*menu_interface, "menu_interface PTR");
 			al_draw_bitmap(*menu_interface, 0, 0, 0);
 			al_flip_display();
+			al_destroy_bitmap(*menu_interface);
 			cp_head = cp_head->next;
 		}
 	}
+	*scoreBoard = al_load_bitmap("scoreboard.jpg");
+	must_init(*scoreBoard, "score_board PTR");
 	al_draw_bitmap(*scoreBoard, 0, 0, 0);
 	al_flip_display();
 	print_score_singlepalyer(font, ptk);
+	al_destroy_bitmap(*scoreBoard);
+	al_destroy_font(*font);
+	al_clear_to_color(al_map_rgb(0, 0, 0));
 	(*which_menu) = 4;
 }

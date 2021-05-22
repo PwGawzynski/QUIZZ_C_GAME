@@ -11,17 +11,20 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
 	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu)
 {
-	int singleplayer = 0;
-	int chk_returned = 0;
-	ALLEGRO_BITMAP* players_nr;
 	switch (check_returned)
 	{
-	case 1: /* Singleplayer */
+	case 1: /* _____________________Singleplayer_____________________ */
+		*game_mode_menu = al_load_bitmap("game_mode_menu.jpg");
+		must_init(*game_mode_menu, "game_mode_menu PTR");
 		al_draw_bitmap(*game_mode_menu, 0, 0, 0);
 		al_flip_display();
+		al_destroy_bitmap(*game_mode_menu);
 	break;
-	case 2: /* Multiplayer */
-		printf(" wieloosobowy ");
+	case 2: /* _____________________Multiplayer_____________________ */
+		bool singleplayer = false;
+		int chk_returned = 0;
+		ALLEGRO_BITMAP* players_nr;
+
 		players_nr=al_load_bitmap("submenu_multiplayer.jpg");
 		must_init(players_nr, "main_menu PTR");
 		al_draw_bitmap(players_nr, 0, 0, 0);
@@ -38,31 +41,27 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 		al_flip_display();
 		al_destroy_bitmap(*main_menu);
 	break;
-	case 3: /* Add Question*/
-		
+	case 3: /* _____________________Add Question_____________________*/
 		allegro_questions_creator(resolution_x,resolution_y,queue);
 		*main_menu = al_load_bitmap("main_menu.jpg");
 		must_init(*main_menu, "main_menu PTR");
-		al_draw_bitmap(*main_menu,0,0,0);
+		al_draw_bitmap(*main_menu, 0, 0, 0);
 		al_flip_display();
 		al_destroy_bitmap(*main_menu);
 	break;
-	case 4: /* Exit Game */
-		printf(" wyjscie ");
+	case 5: /* _____________________Singleplayer Trening_____________________ */
+		singleplayer_trening(timer, display, queue, font, main_menu,
+		game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
 	break;
-	case 5: /* Trening */
-			singleplayer_trening(timer, display, queue, font, main_menu,
-			game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
+	case 6: /* _____________________Singleplayer 3 Lifes_____________________ */
+		singleplayer_3lifes(timer, display, queue, font, main_menu,
+		game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
 	break;
-	case 6: /* 3 Lifes */
-			singleplayer_3lifes(timer, display, queue, font, main_menu,
-			game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
+	case 7: /* _____________________Singleplayer Hardcore_____________________ */
+		singleplayer_hardcore(timer, display, queue, font, main_menu,
+		game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
 	break;
-	case 7: /* Hardcore */
-			singleplayer_hardcore(timer, display, queue, font, main_menu,
-			game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
-	break;
-	case 12:
+	case 12: /* _____________________Exit Game_____________________ */
 		return 12;
 	break;
 	}
@@ -97,9 +96,11 @@ int listener_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 			/* here will be next statements for next game modes */
 			if (check_returned == 0) return 0;
 			/* Bellow if statement check if listener has been called from init_menu */
-			if (*singleplayer) {
+			if (*singleplayer) 
+			{
 				if (forwarding(check_returned, timer, display, queue, font, main_menu,
-					game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu)==12)return 1;
+					game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu) == 12 ) 
+					return 1;
 			}
 			break;
 		case ALLEGRO_EVENT_DISPLAY_CLOSE:
@@ -118,15 +119,15 @@ void init_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display, ALLEGRO_EVENT_Q
 {
 	bool singleplayer = true;
 	int which_menu = 1;
-	int a;
+	int end;
 	do {
 		*main_menu = al_load_bitmap("main_menu.jpg");
 		must_init(*main_menu, "main_menu PTR");
 		al_draw_bitmap(*main_menu, 0, 0, 0);
 		al_flip_display();
 		al_destroy_bitmap(*main_menu);
-		((a = listener_menu(timer, display, queue, font, main_menu,
+		end = listener_menu(timer, display, queue, font, main_menu,
 			game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y,
-			FPS, &which_menu, &singleplayer)));
-	} while (!a);
+			FPS, &which_menu, &singleplayer);
+	} while (!end);
 }

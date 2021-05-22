@@ -39,10 +39,7 @@ int main()
     id = nr_of_questions_in_base;
 	init_menu(&timer, &display, &queue, &font, &main_menu, &game_mode_menu, &menu_interface, &scoreBoard, &resolution_x, &resolution_y, &FPS);
    
-   // al_rest(15.0);
-    al_destroy_font(font);
-    al_destroy_bitmap(game_mode_menu);
-    al_destroy_bitmap(menu_interface);
+    //al_rest(15.0);
     al_destroy_display(display);
     al_destroy_timer(timer);
     al_destroy_event_queue(queue);

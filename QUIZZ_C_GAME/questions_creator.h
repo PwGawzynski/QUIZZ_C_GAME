@@ -1,26 +1,5 @@
 ﻿#pragma once
 #include "questions_string_writter.h"
-/*void show_select(int check_returned)
-{
-	ALLEGRO_COLOR color_green = al_map_rgb(173, 255, 47);
-
-	if(check_returned == 2)
-	{
-		al_draw_filled_recentagle(278, 406, 292, 540, color_green);
-	}
-	if(check_returned == 3) 
-	{
-		al_draw_filled_recentagle(278, 555, 292, 689, color_green);
-	}
-	if(check_returned == 4)
-	{
-		al_draw_filled_recentagle(278, 707, 292, 841, color_green);
-	}
-	if(check_returned == 5)
-	{
-		al_draw_filled_recentagle(278, 859, 292, 993, color_green);
-	}
-}*/
 
 void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE** queue)
 {
@@ -39,7 +18,8 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 	/*MARKING OF THE FIELD TO INSERT*/
 	int window_counter=0;
 	/*FONTS POSITIONS*/
-	int font_position_y[] = { 216, 471, 622, 774, 926 };
+	int align_up = 30; 
+	int font_position_y[] = { 216, 471 - align_up, 622 - align_up, 774 - align_up, 926 - align_up };
 	/*VALUE RETURNED FROM CHECK_EVENT_CLICK MEANS WHICH ELEMENT'S BEEN CLICKED*/
 	int check_returned = 0;
 	/*VALUE INFORMING ABOUT CURRENT SCREEN*/
@@ -392,5 +372,4 @@ void allegro_questions_creator(int* resolution_x, int* resolution_y,ALLEGRO_EVEN
 {
 	int tmp;
 	listener_creator(resolution_x, resolution_y,queue);
-	
 }

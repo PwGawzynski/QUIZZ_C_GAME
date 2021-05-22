@@ -7,6 +7,15 @@
 
 // ____CHEEKS IF REQUIRED ELEMENT WORKS CORRECTLY____ //
 // ____IF NOT PROGRAM WILL BE CLOSED____ //
+
+void must_init(bool test, const char* description)
+{
+	if (test) return;
+
+	printf("Couldn't initialize %s\n", description);
+	exit(1);
+}
+
 void must_init_exit(bool test, const char* description)
 {
 	if (test)
