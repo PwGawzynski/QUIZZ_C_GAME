@@ -94,9 +94,9 @@ void singleplayer_3lifes(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	must_init(*scoreBoard, "score_board PTR");
 	al_draw_bitmap(*scoreBoard, 0, 0, 0);
 	al_flip_display();
-	print_score_singlepalyer(font, ptk);
 	al_destroy_bitmap(*scoreBoard);
+	print_score_singlepalyer(font, ptk);
 	al_destroy_font(*font);
-	al_clear_to_color(al_map_rgb(0, 0, 0));
+	//al_clear_to_color(al_map_rgb(0, 0, 0));
 	(*which_menu) = 4;
 }

@@ -110,5 +110,5 @@ void print_score_singlepalyer(ALLEGRO_FONT** font, int ptk)
 	al_draw_text(*font, color_white, 339, 311,
 	ALLEGRO_ALIGN_LEFT, strcat(tmp_poit_container, itoa(ptk, tmp_int_char, 10)));
 	al_flip_display();
-	*font = al_load_font("spotify_circular.ttf", 30, 1);
+	// hetre was mistake 
 }
