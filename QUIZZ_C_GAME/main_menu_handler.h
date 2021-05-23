@@ -25,6 +25,7 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 		int chk_returned = 0;
 		ALLEGRO_BITMAP* players_nr;
 
+		
 		players_nr=al_load_bitmap("submenu_multiplayer.jpg");
 		must_init(players_nr, "main_menu PTR");
 		al_draw_bitmap(players_nr, 0, 0, 0);
@@ -52,14 +53,17 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 	case 5: /* _____________________Singleplayer Trening_____________________ */
 		singleplayer_trening(timer, display, queue, font, main_menu,
 		game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
+		kill_quest_list();
 	break;
 	case 6: /* _____________________Singleplayer 3 Lifes_____________________ */
 		singleplayer_3lifes(timer, display, queue, font, main_menu,
 		game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
+		kill_quest_list();
 	break;
 	case 7: /* _____________________Singleplayer Hardcore_____________________ */
 		singleplayer_hardcore(timer, display, queue, font, main_menu,
 		game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
+		kill_quest_list();
 	break;
 	case 12: /* _____________________Exit Game_____________________ */
 		return 12;

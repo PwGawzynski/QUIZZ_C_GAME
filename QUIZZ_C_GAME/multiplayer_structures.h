@@ -25,14 +25,17 @@ void create_cyclical_list(struct players** player, int nr_player)
 	}
 	create_cyclical_list(player, --nr_player);
 }
-void kill_cycilcal_list(struct players** player, struct players** first)
+void kill_cycilcal_list(struct players** player)
 {
-	if((*player)!=(*first))
+	struct players* start = *player;
+
+	do
 	{
-		kill_cycilcal_list(&((*player)->next), first);
+		struct player* tmp = (*player)->next;
 		free(*player);
 		(*player) = NULL;
-	}
+		(*player) = tmp;
+	} while ((*player) != (start));
 	
 }
 
@@ -40,8 +43,17 @@ void multiplayer_create_structures(int* resolution_x, int* resolution_y, int nr_
 	struct players* player = NULL;
 	create_cyclical_list(&player, nr_players);
 
+	// tutaj napis loading 
+	
+	load_saved_info();
+	nr_of_questions_in_base = scan_file(5*nr_players, 0, 0);
+	printf("%d\n", nr_of_questions_in_base);
+	id = nr_of_questions_in_base;
 
-	kill_cycilcal_list(&(player->next), &player);
-	free(player);
+	main_loop();
+	
+
+	kill_cycilcal_list(&player);
+	kill_quest_list();
 	return;
 }

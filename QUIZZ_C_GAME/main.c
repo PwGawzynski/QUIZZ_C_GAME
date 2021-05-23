@@ -3,7 +3,7 @@
 #include "strings.h"
 #include "load_game_file.h"
 #include "allegro_lib_handler.h"
-#include "take_players_number.h"
+#include "multiplayer_training.h"
 #include "multiplayer_structures.h"
 #include "string_typewriter.h"
 #include "main_menu_handler.h"
@@ -12,12 +12,7 @@
 
 
 
-// ____CONSTANTS____ //
-const float FPS = 30.0;
-const int no_option = 3;
-unsigned int resolution_x = 1920;
-unsigned int resolution_y = 1080;
-unsigned int nr_of_questions_in_base;
+
 
 
 int main() 

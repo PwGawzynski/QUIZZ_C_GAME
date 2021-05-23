@@ -4,6 +4,13 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <windows.h>
+// ____CONSTANTS____ //
+const float FPS = 30.0;
+const int no_option = 3;
+unsigned int resolution_x = 1920;
+unsigned int resolution_y = 1080;
+unsigned int nr_of_questions_in_base;
+
 
 // ____CHEEKS IF REQUIRED ELEMENT WORKS CORRECTLY____ //
 // ____IF NOT PROGRAM WILL BE CLOSED____ //

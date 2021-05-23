@@ -61,3 +61,15 @@ void kill_mem_for_questions_ptrs()
 	tmp_question.correct = NULL;
 }
 
+void kill_quest_list()
+{
+	while(head_of_questions)
+	{
+		p_questions next = head_of_questions->next;
+		kill_mem_for_questions_ptrs();
+		free(head_of_questions);
+		head_of_questions = NULL;
+		head_of_questions = next;
+	}
+	
+}
