@@ -90,7 +90,7 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 				}
 				else
 				{
-					printf("%s", "chuja");
+					
 
 					if(!(al_ustr_length(input_quest))){
 						quest_writter_empty(&empty, font_position_y, resolution_x, resolution_y, 0);
@@ -197,7 +197,7 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 					al_flip_display();
 					tmp_question.correct = "C";
 				}
-				printf("na uj dwa razy");
+				
 			}
 			else if (check_returned == 55)
 			{

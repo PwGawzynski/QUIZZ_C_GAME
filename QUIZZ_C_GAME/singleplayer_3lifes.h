@@ -71,6 +71,11 @@ void singleplayer_3lifes(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 		if (listener_menu(timer, display, queue, font, main_menu, game_mode_menu, menu_interface, scoreBoard,
 			resolution_x, resolution_y, FPS, which_menu, &training) == correct_ans)
 		{
+			al_draw_text(*font, al_map_rgb(51,255,56), *resolution_x/2, 361,
+				ALLEGRO_ALIGN_CENTER, "ODPOWIEè POPRAWNA");
+			al_flip_display();
+			al_rest(1);
+
 			ptk++;
 			*menu_interface = al_load_bitmap("menu_interface.jpg");
 			must_init(*menu_interface, "menu_interface PTR");
@@ -81,6 +86,11 @@ void singleplayer_3lifes(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 		}
 		else
 		{
+			al_draw_text(*font, al_map_rgb(255,46,0), *resolution_x/2, 361,
+				ALLEGRO_ALIGN_CENTER, "ODPOWIEè NIEPOPRAWNA");
+			al_flip_display();
+			al_rest(1);
+
 			lifes--;
 			*menu_interface = al_load_bitmap("menu_interface.jpg");
 			must_init(*menu_interface, "menu_interface PTR");

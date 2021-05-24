@@ -73,3 +73,14 @@ void kill_quest_list()
 	}
 	
 }
+
+struct players
+{
+	int player_nr;
+	int points;
+	int lives;
+	struct players* next;
+};
+
+struct players* player = NULL;
+typedef struct players* p_player;

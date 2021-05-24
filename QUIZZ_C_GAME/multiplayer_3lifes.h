@@ -1,15 +1,17 @@
 ﻿#pragma once
-int listener_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
+#include "init_structures.h"
+
+int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
-	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu, bool* singleplayer);
+	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu, int nr_players);
 
-void print_score_singlepalyer(ALLEGRO_FONT** font, int ptk);
+void print_score_multiplayer(ALLEGRO_FONT** font, int* scores, int nr_players);
 
-void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
+void multiplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
-	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu)
+	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu, int nr_players)
 {
 	*font = al_load_font("spotify_circular.ttf", 30, 1);
 	must_init(*font, "font");
@@ -21,16 +23,16 @@ void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_COLOR color = al_map_rgb(255, 255, 255);
 
 	p_questions cp_head = head_of_questions;
-	
 	int ptk = 0;
 	char tmp_int_char[10];
+	char tmp_char_player[20];
 	//int returned_from_list = 0;
 	int correct_ans = 0;
 	int aling_up = 15;
-	while (cp_head->next) 
+	while (cp_head->next && (player = player->next))
 	{
 
-		string_typewriter(font, cp_head->question, 24, 1308, 216, *resolution_x / 2 , 140, 60);
+		string_typewriter(font, cp_head->question, 24, 1308, 216, *resolution_x / 2, 140, 60);
 		al_flip_display();
 		string_typewriter(font, cp_head->answer_a, 24, 1308, 134, *resolution_x / 2, 404, 45);
 		al_flip_display();
@@ -43,7 +45,11 @@ void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 
 		char tmp_poit_container[10] = { "PUNKTY: " };
 		al_draw_text(*font, color, 1450, 100,
-			ALLEGRO_ALIGN_CENTER, strcat(tmp_poit_container, itoa(ptk, tmp_int_char, 10)));
+			ALLEGRO_ALIGN_CENTER, strcat(tmp_poit_container, itoa(player->points, tmp_int_char, 10)));
+
+		char player_name[20] = { "ODPOWIADA: GRACZ " };
+		al_draw_text(*font, color, 1100, 100,
+			ALLEGRO_ALIGN_CENTER, strcat(player_name, itoa(player->player_nr, tmp_char_player, 10)));
 
 
 		switch (cp_head->correct[0])
@@ -69,15 +75,15 @@ void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 		bool training = false;
 
 
-		if (listener_menu(timer, display, queue, font, main_menu, game_mode_menu, menu_interface, scoreBoard,
-			resolution_x, resolution_y, FPS, which_menu, &training) == correct_ans)
+		if (main_loop(timer, display, queue, font, main_menu, game_mode_menu, menu_interface, scoreBoard,
+			resolution_x, resolution_y, FPS, which_menu, nr_players) == correct_ans)
 		{
-			al_draw_text(*font, al_map_rgb(51,255,56), *resolution_x/2, 361,
+			al_draw_text(*font, al_map_rgb(51, 255, 56), *resolution_x / 2, 361,
 				ALLEGRO_ALIGN_CENTER, "ODPOWIEŹ POPRAWNA");
 			al_flip_display();
 			al_rest(1);
 
-			ptk++;
+			player->points++;
 			*menu_interface = al_load_bitmap("menu_interface.jpg");
 			must_init(*menu_interface, "menu_interface PTR");
 			al_draw_bitmap(*menu_interface, 0, 0, 0);
@@ -87,7 +93,7 @@ void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 		}
 		else
 		{
-			al_draw_text(*font, al_map_rgb(255,46,0), *resolution_x/2, 361,
+			al_draw_text(*font, al_map_rgb(255, 46, 0), *resolution_x / 2, 361,
 				ALLEGRO_ALIGN_CENTER, "ODPOWIEŹ NIEPOPRAWNA");
 			al_flip_display();
 			al_rest(1);
@@ -100,25 +106,38 @@ void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 			cp_head = cp_head->next;
 		}
 	}
+	int scores[4] = { player->points,player->next->points,player->next->next->points,player->next->next->next->points };
 	*scoreBoard = al_load_bitmap("scoreboard.jpg");
 	must_init(*scoreBoard, "score_board PTR");
 	al_draw_bitmap(*scoreBoard, 0, 0, 0);
 	al_flip_display();
-	print_score_singlepalyer(font, ptk);
+
+	print_score_multiplayer(font, scores, nr_players);
 	al_destroy_bitmap(*scoreBoard);
 	al_destroy_font(*font);
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 	(*which_menu) = 4;
 }
 
-void print_score_singlepalyer(ALLEGRO_FONT** font, int ptk)
+void print_score_multiplayer(ALLEGRO_FONT** font, int* scores, int nr_players)
 {
 	ALLEGRO_COLOR color_white = al_map_rgb(255, 255, 255);
 	*font = al_load_font("spotify_circular.ttf", 60, 1);
-	char tmp_poit_container[20] = { "ZDOBYTE PUNKTY: " };
-	char tmp_int_char[10];
-	al_draw_text(*font, color_white, 339, 311,
-	ALLEGRO_ALIGN_LEFT, strcat(tmp_poit_container, itoa(ptk, tmp_int_char, 10)));
+	int move = 0;
+	char* tmp_poit_container = NULL;
+	for (int i = 0; i < nr_players; i++)
+	{
+		tmp_poit_container = (char*)malloc(20);
+		tmp_poit_container[0] = '\0';
+		must_init_exit(tmp_poit_container, "POINT CONTAINER");
+		strcat(tmp_poit_container, "GRACZ ");
+		char tmp_int_char[30];
+		strcat(tmp_poit_container, itoa(i + 1, tmp_int_char, 10));
+		strcat(tmp_poit_container, " PUNKTY: ");
+		al_draw_text(*font, color_white, 339, 311 + move,
+			ALLEGRO_ALIGN_LEFT, strcat(tmp_poit_container, itoa(scores[i], tmp_int_char, 10)));
+		move += 60;
+		free(tmp_poit_container);
+	}
 	al_flip_display();
-	// hetre was mistake 
 }

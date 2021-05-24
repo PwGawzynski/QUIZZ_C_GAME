@@ -66,6 +66,15 @@
     <ClInclude Include="multiplayer_main_loop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="multiplayer_training.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="multiplayer_3lifes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="multiplayer_hardcore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">

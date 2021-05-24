@@ -13,8 +13,8 @@ int check_event_click(unsigned int* mouse_x, unsigned int* mouse_y, int* which_m
 	{
 		/* Game mode menu */
 		if (((*mouse_x >= 444) && (*mouse_x <= 1476)) && ((*mouse_y >= 305) && (*mouse_y <= 484))) { (*which_menu) = 3; return 5; } // trening
-		if (((*mouse_x >= 444) && (*mouse_x <= 1476)) && ((*mouse_y >= 520) && (*mouse_y <= 699))) { (*which_menu)=3; return 6; }// 3 lifes
-		if (((*mouse_x >= 444) && (*mouse_x <= 1476)) && ((*mouse_y >= 735) && (*mouse_y <= 914))) { (*which_menu)=3; return 7; } // hardcore
+		if (((*mouse_x >= 444) && (*mouse_x <= 1476)) && ((*mouse_y >= 520) && (*mouse_y <= 699))) { (*which_menu)= 3; return 6; }// 3 lifes
+		if (((*mouse_x >= 444) && (*mouse_x <= 1476)) && ((*mouse_y >= 735) && (*mouse_y <= 914))) { (*which_menu)= 3; return 7; } // hardcore
 	}
 	if ((*which_menu) == 3)
 	{

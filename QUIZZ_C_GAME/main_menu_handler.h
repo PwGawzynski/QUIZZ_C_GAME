@@ -37,7 +37,7 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 			FPS, which_menu, &singleplayer);
 		multiplayer_create_structures(timer, display, queue, font, main_menu,
 			game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y,
-			FPS, which_menu, singleplayer,check_returned);
+			FPS, which_menu, singleplayer,chk_returned);
 		*main_menu = al_load_bitmap("main_menu.jpg");
 		must_init(*main_menu, "main_menu PTR");
 		al_draw_bitmap(*main_menu, 0, 0, 0);
@@ -53,16 +53,28 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 		al_destroy_bitmap(*main_menu);
 	break;
 	case 5: /* _____________________Singleplayer Trening_____________________ */
+		load_saved_info();
+		nr_of_questions_in_base = scan_file(5, 0, 0);
+		printf("%d\n", nr_of_questions_in_base);
+		id = nr_of_questions_in_base;
 		singleplayer_trening(timer, display, queue, font, main_menu,
 		game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
 		kill_quest_list();
 	break;
 	case 6: /* _____________________Singleplayer 3 Lifes_____________________ */
+		load_saved_info();
+		nr_of_questions_in_base = scan_file(5, 0, 0);
+		printf("%d\n", nr_of_questions_in_base);
+		id = nr_of_questions_in_base;
 		singleplayer_3lifes(timer, display, queue, font, main_menu,
 		game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
 		kill_quest_list();
 	break;
 	case 7: /* _____________________Singleplayer Hardcore_____________________ */
+		load_saved_info();
+		nr_of_questions_in_base = scan_file(5, 0, 0);
+		printf("%d\n", nr_of_questions_in_base);
+		id = nr_of_questions_in_base;
 		singleplayer_hardcore(timer, display, queue, font, main_menu,
 		game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
 		kill_quest_list();
