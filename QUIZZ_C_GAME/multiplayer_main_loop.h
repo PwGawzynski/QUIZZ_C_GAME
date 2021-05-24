@@ -1,20 +1,25 @@
 ﻿#pragma once
+#include <allegro5/timer.h>
+
 #include "check_event_click.h"
 void wh_game();
-void main_loop()
+void main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
+	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
+	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
+	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu)
 {
 	wh_game();
 	ALLEGRO_EVENT event;
-	ALLEGRO_EVENT_QUEUE* queue =  al_create_event_queue();
-	must_init(queue, "queue");
+	
+	must_init(*queue, "queue");
 	bool done = false;
 	bool redraw = false;
-	int which_menu = 3;
+	*which_menu = 2;
 	int check_returned = 0;
 	unsigned int mouse_x, mouse_y, mouse_click;
 	while (1)
 	{
-		al_wait_for_event(queue, &event);
+		al_wait_for_event(*queue, &event);
 		switch (event.type)
 		{
 			/* on click event */
@@ -23,6 +28,7 @@ void main_loop()
 			mouse_y = event.mouse.y;
 			check_returned = check_event_click(&mouse_x, &mouse_y, which_menu);
 			printf(" cr: %d \n", check_returned);
+			
 			break;
 		case ALLEGRO_EVENT_DISPLAY_CLOSE:
 			done = true;

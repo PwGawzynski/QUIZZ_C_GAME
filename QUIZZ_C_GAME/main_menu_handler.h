@@ -35,7 +35,9 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 		chk_returned = listener_menu(timer, display, queue, font, main_menu,
 			game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y,
 			FPS, which_menu, &singleplayer);
-		multiplayer_create_structures(resolution_x, resolution_y, chk_returned,queue);
+		multiplayer_create_structures(timer, display, queue, font, main_menu,
+			game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y,
+			FPS, which_menu, singleplayer,check_returned);
 		*main_menu = al_load_bitmap("main_menu.jpg");
 		must_init(*main_menu, "main_menu PTR");
 		al_draw_bitmap(*main_menu, 0, 0, 0);
@@ -95,7 +97,7 @@ int listener_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 			/* Below check is for single player function which has permission to call listener
 			function as her own. */
 			if (check_returned >= 8 && check_returned <= 11) return check_returned;
-			if (check_returned >= 1 && check_returned <= 3 && *which_menu==6) return check_returned;
+			if (check_returned >= 2 && check_returned <= 4 && *which_menu==6) return check_returned;
 
 			/* here will be next statements for next game modes */
 			if (check_returned == 0) return 0;

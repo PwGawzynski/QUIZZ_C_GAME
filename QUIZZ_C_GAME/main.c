@@ -3,7 +3,7 @@
 #include "strings.h"
 #include "load_game_file.h"
 #include "allegro_lib_handler.h"
-#include "multiplayer_training.h"
+#include "multiplayer_main_loop.h"
 #include "multiplayer_structures.h"
 #include "string_typewriter.h"
 #include "main_menu_handler.h"

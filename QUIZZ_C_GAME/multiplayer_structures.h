@@ -39,7 +39,10 @@ void kill_cycilcal_list(struct players** player)
 	
 }
 
-void multiplayer_create_structures(int* resolution_x, int* resolution_y, int nr_players,ALLEGRO_EVENT_QUEUE** queue){
+void multiplayer_create_structures(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
+	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
+	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
+	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu, bool* singleplayer,int nr_players){
 	struct players* player = NULL;
 	create_cyclical_list(&player, nr_players);
 
@@ -50,7 +53,9 @@ void multiplayer_create_structures(int* resolution_x, int* resolution_y, int nr_
 	printf("%d\n", nr_of_questions_in_base);
 	id = nr_of_questions_in_base;
 
-	main_loop();
+	main_loop(timer, display, queue, font, main_menu,
+		game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y,
+		FPS, which_menu);
 	
 
 	kill_cycilcal_list(&player);

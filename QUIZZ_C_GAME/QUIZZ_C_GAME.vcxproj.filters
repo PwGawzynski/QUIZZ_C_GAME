@@ -63,7 +63,7 @@
     <ClInclude Include="multiplayer_structures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="multiplayer_training.h">
+    <ClInclude Include="multiplayer_main_loop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
