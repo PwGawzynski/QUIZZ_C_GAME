@@ -6,6 +6,7 @@ void create_cyclical_list(struct players** player, int nr_player)
 	{
 		(*player) = (struct players*)malloc(sizeof(struct players));
 		(*player)->player_nr = nr_player;
+		(*player)->lives = 1;
 		(*player)->points = 0;
 		must_init_exit(player, "cyclical list allocation memory");
 		(*player)->next = (*player);
@@ -15,6 +16,7 @@ void create_cyclical_list(struct players** player, int nr_player)
 		struct players* tmp = (*player)->next;
 		(*player)->next = (struct players*)malloc(sizeof(struct players));
 		(*player)->next->player_nr = nr_player;
+		(*player)->next->lives = 1;
 		(*player)->next->points = 0;
 		must_init_exit((*player)->next, "cyclical list allocation memory");
 		(*player)->next->next = tmp;

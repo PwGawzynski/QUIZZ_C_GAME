@@ -55,21 +55,21 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="questions_creator.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="questions_string_writter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="multiplayer_structures.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="multiplayer_main_loop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="multiplayer_3lifes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="multiplayer_training.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="multiplayer_3lifes.h">
+    <ClInclude Include="multiplayer_structures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="multiplayer_hardcore.h">

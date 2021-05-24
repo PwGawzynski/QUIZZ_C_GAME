@@ -6,9 +6,26 @@ int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
 	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu, int nr_players);
 
-void print_score_multiplayer(ALLEGRO_FONT** font, int* scores, int nr_players);
-
-void multiplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
+bool set_proper_player(int nr_players)
+{
+	while ((player=player->next) && nr_players)
+	{
+		if (player->lives != 0)
+			return true;
+		--nr_players; 
+	}
+	return false;
+	
+}
+void set_lifes()
+{
+	while(player->lives!=3)
+	{
+		player->lives = 3;
+		player = player->next;
+	}
+}
+void multiplayer_3lifes(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
 	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu, int nr_players)
@@ -29,7 +46,10 @@ void multiplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	//int returned_from_list = 0;
 	int correct_ans = 0;
 	int aling_up = 15;
-	while (cp_head->next && (player = player->next))
+
+	set_lifes();
+	
+	while (cp_head->next && set_proper_player(nr_players))
 	{
 
 		string_typewriter(font, cp_head->question, 24, 1308, 216, *resolution_x / 2, 140, 60);
@@ -43,9 +63,9 @@ void multiplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 		string_typewriter(font, cp_head->answer_d, 24, 1308, 134, *resolution_x / 2, 859, 45);
 		al_flip_display();
 
-		char tmp_poit_container[10] = { "PUNKTY: " };
+		char tmp_poit_container[10] = { "Życia: " };
 		al_draw_text(*font, color, 1450, 100,
-			ALLEGRO_ALIGN_CENTER, strcat(tmp_poit_container, itoa(player->points, tmp_int_char, 10)));
+			ALLEGRO_ALIGN_CENTER, strcat(tmp_poit_container, itoa(player->lives, tmp_int_char, 10)));
 
 		char player_name[20] = { "ODPOWIADA: GRACZ " };
 		al_draw_text(*font, color, 1100, 100,
@@ -93,6 +113,7 @@ void multiplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 		}
 		else
 		{
+			player->lives--;
 			al_draw_text(*font, al_map_rgb(255, 46, 0), *resolution_x / 2, 361,
 				ALLEGRO_ALIGN_CENTER, "ODPOWIEŹ NIEPOPRAWNA");
 			al_flip_display();
@@ -119,25 +140,3 @@ void multiplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	(*which_menu) = 4;
 }
 
-void print_score_multiplayer(ALLEGRO_FONT** font, int* scores, int nr_players)
-{
-	ALLEGRO_COLOR color_white = al_map_rgb(255, 255, 255);
-	*font = al_load_font("spotify_circular.ttf", 60, 1);
-	int move = 0;
-	char* tmp_poit_container = NULL;
-	for (int i = 0; i < nr_players; i++)
-	{
-		tmp_poit_container = (char*)malloc(20);
-		tmp_poit_container[0] = '\0';
-		must_init_exit(tmp_poit_container, "POINT CONTAINER");
-		strcat(tmp_poit_container, "GRACZ ");
-		char tmp_int_char[30];
-		strcat(tmp_poit_container, itoa(i + 1, tmp_int_char, 10));
-		strcat(tmp_poit_container, " PUNKTY: ");
-		al_draw_text(*font, color_white, 339, 311 + move,
-			ALLEGRO_ALIGN_LEFT, strcat(tmp_poit_container, itoa(scores[i], tmp_int_char, 10)));
-		move += 60;
-		free(tmp_poit_container);
-	}
-	al_flip_display();
-}

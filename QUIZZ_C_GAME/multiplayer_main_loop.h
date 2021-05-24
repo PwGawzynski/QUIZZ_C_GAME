@@ -5,6 +5,21 @@
 #include "multiplayer_hardcore.h"
 void wh_game();
 
+void loading()
+{
+	
+	ALLEGRO_BITMAP* game_mode = al_load_bitmap("game_mode_menu.jpg");
+	must_init(game_mode, "game_mode_menu PTR");
+	al_draw_bitmap(game_mode, 0, 0, 0);
+	ALLEGRO_FONT* font = al_load_font("spotify_circular.ttf", 50, 1);
+	al_draw_text(font, al_map_rgb(201, 255, 37),
+		1308, 950,
+		ALLEGRO_ALIGN_CENTER, "CHWILECZKĘ WCZYTUJĘ PYTANIA :)");
+	al_destroy_font(font);
+	al_flip_display();
+	al_destroy_bitmap(game_mode);
+}
+
 int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
@@ -48,6 +63,7 @@ int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 
 			if (check_returned == 5) 
 			{
+				loading();
 				load_saved_info();
 				//zmienić ilość pytań 
 				nr_of_questions_in_base = scan_file((2 * nr_players)+1, 0, 0);
@@ -60,9 +76,10 @@ int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 			
 			if (check_returned == 6) 
 			{
+				loading();
 				load_saved_info();
 				//zmienić ilość pytań 
-				nr_of_questions_in_base = scan_file((2 * nr_players)+1, 0, 0);
+				nr_of_questions_in_base = scan_file((6 * nr_players)+1, 0, 0);
 				printf("%d\n", nr_of_questions_in_base);
 				id = nr_of_questions_in_base;
 				
@@ -72,9 +89,10 @@ int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 			
 			if (check_returned == 7) 
 			{
+				loading();
 				load_saved_info();
 				//zmienić ilość pytań 
-				nr_of_questions_in_base = scan_file((2 * nr_players)+1, 0, 0);
+				nr_of_questions_in_base = scan_file((5 * nr_players)+1, 0, 0);
 				printf("%d\n", nr_of_questions_in_base);
 				id = nr_of_questions_in_base;
 				
@@ -93,7 +111,7 @@ int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 
 void wh_game()
 {
-	bool singleplayer = false;
+	
 	ALLEGRO_BITMAP* game_mode = al_load_bitmap("game_mode_menu.jpg");
 	must_init(game_mode, "game_mode_menu PTR");
 	al_draw_bitmap(game_mode, 0, 0, 0);

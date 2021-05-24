@@ -5,6 +5,8 @@
 #include "singleplayer_hardcore.h"
 #include "questions_creator.h"
 
+
+
 /* This function is responsible for forwarding to appropriate functions which serves game modes */
 int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
@@ -53,6 +55,7 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 		al_destroy_bitmap(*main_menu);
 	break;
 	case 5: /* _____________________Singleplayer Trening_____________________ */
+		loading();
 		load_saved_info();
 		nr_of_questions_in_base = scan_file(5, 0, 0);
 		printf("%d\n", nr_of_questions_in_base);
@@ -62,6 +65,7 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 		kill_quest_list();
 	break;
 	case 6: /* _____________________Singleplayer 3 Lifes_____________________ */
+		loading();
 		load_saved_info();
 		nr_of_questions_in_base = scan_file(5, 0, 0);
 		printf("%d\n", nr_of_questions_in_base);
@@ -71,6 +75,7 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 		kill_quest_list();
 	break;
 	case 7: /* _____________________Singleplayer Hardcore_____________________ */
+		loading();
 		load_saved_info();
 		nr_of_questions_in_base = scan_file(5, 0, 0);
 		printf("%d\n", nr_of_questions_in_base);

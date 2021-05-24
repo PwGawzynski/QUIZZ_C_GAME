@@ -73,7 +73,7 @@ void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 			resolution_x, resolution_y, FPS, which_menu, &training) == correct_ans)
 		{
 			al_draw_text(*font, al_map_rgb(51,255,56), *resolution_x/2, 361,
-				ALLEGRO_ALIGN_CENTER, "ODPOWIEŹ POPRAWNA");
+				ALLEGRO_ALIGN_CENTER, "ODPOWIEDŹ POPRAWNA");
 			al_flip_display();
 			al_rest(1);
 
@@ -88,7 +88,7 @@ void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 		else
 		{
 			al_draw_text(*font, al_map_rgb(255,46,0), *resolution_x/2, 361,
-				ALLEGRO_ALIGN_CENTER, "ODPOWIEŹ NIEPOPRAWNA");
+				ALLEGRO_ALIGN_CENTER, "ODPOWIEDŹ NIEPOPRAWNA");
 			al_flip_display();
 			al_rest(1);
 
