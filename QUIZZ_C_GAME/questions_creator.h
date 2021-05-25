@@ -34,6 +34,8 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 	ALLEGRO_USTR* input_answer_d= al_ustr_new("");
 	/*TMP BITMAP HOLDER*/
 	ALLEGRO_BITMAP* tmp;
+	/*ALLEGRO FONT*/
+	ALLEGRO_FONT* font = al_load_font("spotify_circular.ttf", 50, 1);
 	/*MOUSE POSITIONS*/
 	unsigned int mouse_x, mouse_y;
 	/*WHICH_STR VARIABLE TO SAVE INFO WHICH STRING IS FILLED*/
@@ -87,6 +89,30 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 					tmp_question.correct = "A";
 					write_to_file();
 					fclose(file);
+
+					al_ustr_free(input_quest);
+					al_ustr_free(input_answer_a);
+					al_ustr_free(input_answer_b);
+					al_ustr_free(input_answer_c);
+					al_ustr_free(input_answer_d);
+
+					input_quest = al_ustr_new("");
+					input_answer_a = al_ustr_new("");
+					input_answer_b = al_ustr_new("");
+					input_answer_c = al_ustr_new("");
+					input_answer_d = al_ustr_new("");
+
+					
+					al_draw_bitmap(question_creator, 0, 0, 0);
+
+					al_draw_text(font, al_map_rgb(201, 255, 37),
+						1308, 1000,
+						ALLEGRO_ALIGN_CENTER, "PYTANIE ZOSTAŁO DODANE POMYŚLNIE :)");
+					al_flip_display();
+					al_rest(2);
+					al_draw_bitmap(question_creator, 0, 0, 0);
+
+					window_counter = 0; which_str = 0; counter = -1;
 				}
 				else
 				{
@@ -119,21 +145,21 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 				counter = al_ustr_length(input_quest);
 			}else if(check_returned==2)
 			{
-				window_counter = 1, which_str = 1;
+				window_counter = 1; which_str = 1;
 				counter = al_ustr_length(input_answer_a)-1;
 			}
 			else if (check_returned == 3)
 			{
-				window_counter = 2, which_str = 2;
+				window_counter = 2; which_str = 2;
 				counter = al_ustr_length(input_answer_b)-1;
 			}
 			else if (check_returned == 4)
 			{
-				window_counter = 3, which_str = 3;
+				window_counter = 3; which_str = 3;
 				counter = al_ustr_length(input_answer_c)-1;
 			}else if (check_returned == 5)
 			{
-				window_counter = 4, which_str = 4;
+				window_counter = 4; which_str = 4;
 				counter = al_ustr_length(input_answer_d)-1;
 			}
 			else if (check_returned == 22)
@@ -365,6 +391,7 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 
 	}
 	al_destroy_bitmap(question_creator);
+	al_destroy_font(font);
 }
 
 
