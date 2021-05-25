@@ -66,7 +66,7 @@ void singleplayer_hardcore(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 			resolution_x, resolution_y, FPS, which_menu, &training) == correct_ans)
 		{
 			al_draw_text(*font, al_map_rgb(51,255,56), *resolution_x/2, 361,
-				ALLEGRO_ALIGN_CENTER, "ODPOWIEDè POPRAWNA");
+				ALLEGRO_ALIGN_CENTER, "ODPOWIEè POPRAWNA");
 			al_flip_display();
 			al_rest(1);
 

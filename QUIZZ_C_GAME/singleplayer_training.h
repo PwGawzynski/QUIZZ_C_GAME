@@ -27,6 +27,9 @@ void singleplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	//int returned_from_list = 0;
 	int correct_ans = 0;
 	int aling_up = 15;
+
+	must_init_exit(cp_head,"QUESTIONS HASN'T BEEN LOADED");
+	
 	while (cp_head->next) 
 	{
 

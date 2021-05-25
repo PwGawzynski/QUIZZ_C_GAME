@@ -76,7 +76,15 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 			{
 				/*check if every field has been filled*/
 				if (al_ustr_length(input_quest) && al_ustr_length(input_answer_a) && al_ustr_length(input_answer_b) &&
-					al_ustr_length(input_answer_c) && al_ustr_length(input_answer_d)) {
+					al_ustr_length(input_answer_c) && al_ustr_length(input_answer_d) && tmp_question.correct) {
+
+					/*REMOVING WHITE CHARACTERS ON THE END*/
+					al_ustr_get(input_quest, al_ustr_length(input_quest)) == 32 ? al_ustr_remove_chr(input_quest, al_ustr_length(input_quest)) : 0;
+					al_ustr_get(input_quest, al_ustr_length(input_answer_a)) == 32 ? al_ustr_remove_chr(input_quest, al_ustr_length(input_answer_a)) : 0;
+					al_ustr_get(input_quest, al_ustr_length(input_answer_b)) == 32 ? al_ustr_remove_chr(input_quest, al_ustr_length(input_answer_b)) : 0;
+					al_ustr_get(input_quest, al_ustr_length(input_answer_c)) == 32 ? al_ustr_remove_chr(input_quest, al_ustr_length(input_answer_c)) : 0;
+					al_ustr_get(input_quest, al_ustr_length(input_answer_d)) == 32 ? al_ustr_remove_chr(input_quest, al_ustr_length(input_answer_d)) : 0;
+
 					
 					scan_file(0, 1, (id += 1));
 					fseek(file, 0, SEEK_END);// be careful 
@@ -86,9 +94,10 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 					tmp_question.answer_b = al_cstr(input_answer_b);
 					tmp_question.answer_c = al_cstr(input_answer_c);
 					tmp_question.answer_d = al_cstr(input_answer_d);
-					tmp_question.correct = "A";
 					write_to_file();
 					fclose(file);
+					tmp_question.correct = NULL;
+
 
 					al_ustr_free(input_quest);
 					al_ustr_free(input_answer_a);
@@ -102,14 +111,18 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 					input_answer_c = al_ustr_new("");
 					input_answer_d = al_ustr_new("");
 
-					
+					al_destroy_bitmap(question_creator);
+					question_creator = al_load_bitmap("question_creator.jpg");
+					must_init(question_creator, "question_creator PTR");
 					al_draw_bitmap(question_creator, 0, 0, 0);
 
 					al_draw_text(font, al_map_rgb(201, 255, 37),
 						1308, 1000,
 						ALLEGRO_ALIGN_CENTER, "PYTANIE ZOSTAŁO DODANE POMYŚLNIE :)");
 					al_flip_display();
+
 					al_rest(2);
+					
 					al_draw_bitmap(question_creator, 0, 0, 0);
 
 					window_counter = 0; which_str = 0; counter = -1;
@@ -135,6 +148,14 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 					else if (!(al_ustr_length(input_answer_d))) {
 						quest_writter_empty(&empty, font_position_y, resolution_x, resolution_y, 4);
 
+					}else if(!tmp_question.correct)
+					{
+						al_draw_bitmap(question_creator, 0, 0, 0);
+
+						al_draw_text(font, al_map_rgb(255, 66, 33),
+							1308, 1000,
+							ALLEGRO_ALIGN_CENTER, "ZAZNACZ PRAWIDŁOWĄ ODPOWIEDŹ !!!");
+						al_flip_display();
 					}
 					al_flip_display();
 				}
