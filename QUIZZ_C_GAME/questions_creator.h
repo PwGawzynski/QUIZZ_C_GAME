@@ -79,13 +79,15 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 					al_ustr_length(input_answer_c) && al_ustr_length(input_answer_d) && tmp_question.correct) {
 
 					/*REMOVING WHITE CHARACTERS ON THE END*/
-					al_ustr_get(input_quest, al_ustr_length(input_quest)) == 32 ? al_ustr_remove_chr(input_quest, al_ustr_length(input_quest)) : 0;
+					/*al_ustr_get(input_quest, al_ustr_length(input_quest)) == 32 ? al_ustr_remove_chr(input_quest, al_ustr_length(input_quest)) : 0;
 					al_ustr_get(input_quest, al_ustr_length(input_answer_a)) == 32 ? al_ustr_remove_chr(input_quest, al_ustr_length(input_answer_a)) : 0;
 					al_ustr_get(input_quest, al_ustr_length(input_answer_b)) == 32 ? al_ustr_remove_chr(input_quest, al_ustr_length(input_answer_b)) : 0;
 					al_ustr_get(input_quest, al_ustr_length(input_answer_c)) == 32 ? al_ustr_remove_chr(input_quest, al_ustr_length(input_answer_c)) : 0;
-					al_ustr_get(input_quest, al_ustr_length(input_answer_d)) == 32 ? al_ustr_remove_chr(input_quest, al_ustr_length(input_answer_d)) : 0;
+					al_ustr_get(input_quest, al_ustr_length(input_answer_d)) == 32 ? al_ustr_remove_chr(input_quest, al_ustr_length(input_answer_d)) : 0;*/
 
-					
+					file = fopen("database.bin", "rb+");
+					fread(&id, sizeof(int), 1, file);
+					fclose(file);
 					scan_file(0, 1, (id += 1));
 					fseek(file, 0, SEEK_END);// be careful 
 					tmp_question.id = id;
