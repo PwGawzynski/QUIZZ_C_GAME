@@ -1,4 +1,16 @@
 ﻿#pragma once
+/**
+ * \brief Funkcja odpowiadająca za wyświetlanie wielolinijkowe pytań w danym obszarze. 
+ *
+ * @param string ciąg znaków.
+ * @param font podwójny wskaźnik na font biblioteki allegro.
+ * @param font_size wielkość czcionki.
+ * @param box_resolution_x szerokość boxa.
+ * @param box_resolution_y wysokość boxa.
+ * @param pos_x pozycja w osi x położenia teksu.
+ * @param pos_y pozycja w osi y położenia teksu.
+ * @param margin_up margin up.
+ */
 void string_typewriter(ALLEGRO_FONT** font, char* string, int font_size,
 	int box_resolution_x, int box_resolution_y, /*center of box*/ int pos_x, /*top edge*/ int pos_y, int margin_up)
 {

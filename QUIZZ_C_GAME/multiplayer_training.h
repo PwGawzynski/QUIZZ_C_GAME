@@ -7,7 +7,23 @@ int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
               unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu, int nr_players);
 
 void print_score_multiplayer(ALLEGRO_FONT** font, int* scores, int nr_players);
-
+/**
+ * \brief Funkcja potrzebna do obsługi trybu trening w grze wieloosobowej.
+ *
+ * @param resolution_x rozdzielczość pozioma okna programu.
+ * @param resolution_y rozdzielczość pionowa okna programu.
+ * @param FPS ilość klatek na sekundę.
+ * @param timer podwójny wskaźnik na timer biblioteki allegro.
+ * @param display podwójny wskaźnik na display biblioteki allegro.
+ * @param queue podwójny wskaźnik na kolejkę biblioteki allegro.
+ * @param main_menu podwójny wskaźnik na tło menu głównego.
+ * @param game_mode_menu podwójny wskaźnik na tło trybów gry.
+ * @param menu_interface podwójny wskaźnik na tło interfejsu gry.
+ * @param scoreBoard podwójny wskaźnik na tło wyników końcowych.
+ * @param font podwójny wskaźnik na font biblioteki allegro.
+ * @param which_menu określa typ przekierowań.
+ * @param nr_players ilość graczy.
+ */
 void multiplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
@@ -118,7 +134,13 @@ void multiplayer_trening(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 	(*which_menu) = 4;
 }
-
+/**
+ * \brief Funkcja wypisująca wyniki końcowe gry w trybie multiplayer (punkty).
+ *
+ * @param scores wskaźnik na punkty zdobyte przez danego gracza.
+ * @param font podwójny wskaźnik na font biblioteki allegro.
+ * @param nr_players ilość graczy.
+ */
 void print_score_multiplayer(ALLEGRO_FONT** font, int* scores, int nr_players)
 {
 	ALLEGRO_COLOR color_white = al_map_rgb(255, 255, 255);

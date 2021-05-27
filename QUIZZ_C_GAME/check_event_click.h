@@ -1,4 +1,17 @@
 ﻿#pragma once
+/**
+ * \brief Funckja sprawdza czy został kliknięty przycisk rozwiązania problemu.
+ *
+ *	Ta funkcja sprawdza tak naprawdę pozycję myszki i na tej podstawie jeżeli
+ *	kliknięcie nastąpiło w odpowiednim miejscu, przy odpowiednim which_menu zwraca 
+ *  wartość która wykorzystywana jest w dalszej części programu.
+ *
+ * @param mouse_x poziomy koordynat kursora.
+ * @param mouse_y pionowy koordynat kursora.
+ * @param which_menu określa które menu jest aktualnie używane.
+ * \return wartość która określa jaka operacja ma się wykonać.
+ * 
+ */
 int check_event_click(unsigned int* mouse_x, unsigned int* mouse_y, int* which_menu)
 {
 	if ((*which_menu) == 1)

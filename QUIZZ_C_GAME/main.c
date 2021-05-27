@@ -9,7 +9,9 @@
 #include "main_menu_handler.h"
 #include "questions_string_writter.h"
 #include "questions_creator.h"
-
+/**
+ * \brief Funckja g³ówna programu.
+ */
 int main() 
 {
     ALLEGRO_TIMER* timer = NULL;

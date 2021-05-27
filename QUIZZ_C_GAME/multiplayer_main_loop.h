@@ -4,10 +4,11 @@
 #include "multiplayer_3lifes.h"
 #include "multiplayer_hardcore.h"
 void wh_game();
-
+/**
+ * \brief Funkcja wyświetla informacje o wczytywaniu pytań.
+ */
 void loading()
 {
-	
 	ALLEGRO_BITMAP* game_mode = al_load_bitmap("game_mode_menu.jpg");
 	must_init(game_mode, "game_mode_menu PTR");
 	al_draw_bitmap(game_mode, 0, 0, 0);
@@ -19,7 +20,25 @@ void loading()
 	al_flip_display();
 	al_destroy_bitmap(game_mode);
 }
-
+/**
+ * \brief Funkcja zawiera pętle bilbioteki allegro oraz obsługuje eventy kolejki dla trybu multiplayer.
+ * 
+ * Odbywa się w niej głowna pentla, która sprawdza pozycje myszki, kliknięcia, eventy przycisków i wyjścia.
+ *
+ * @param resolution_x rozdzielczość pozioma okna programu.
+ * @param resolution_y rozdzielczość pionowa okna programu.
+ * @param FPS ilość klatek na sekundę.
+ * @param timer podwójny wskaźnik na timer biblioteki allegro.
+ * @param display podwójny wskaźnik na display biblioteki allegro.
+ * @param queue podwójny wskaźnik na kolejkę biblioteki allegro.
+ * @param main_menu podwójny wskaźnik na tło menu głównego.
+ * @param game_mode_menu podwójny wskaźnik na tło trybów gry.
+ * @param menu_interface podwójny wskaźnik na tło interfejsu gry.
+ * @param scoreBoard podwójny wskaźnik na tło wyników końcowych.
+ * @param font podwójny wskaźnik na font biblioteki allegro.
+ * @param which_menu określa typ przekierowań.
+ * @param nr_players ilość graczy.
+ */
 int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
@@ -108,10 +127,11 @@ int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 		if (done) break;
 	}
 }
-
+/**
+ * \brief Wyświetla bitmapę z wyborem trybu gry.
+ */
 void wh_game()
 {
-	
 	ALLEGRO_BITMAP* game_mode = al_load_bitmap("game_mode_menu.jpg");
 	must_init(game_mode, "game_mode_menu PTR");
 	al_draw_bitmap(game_mode, 0, 0, 0);

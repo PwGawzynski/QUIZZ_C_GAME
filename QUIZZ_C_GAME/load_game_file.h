@@ -15,15 +15,28 @@ void create_list();
 p_questions create_head(p_questions head);
 void create_next_list_el(ref_questions el);
 bool is_id_in_array(int* array, int id);
-
+/**
+ * \brief Funkcja inicjalizuje wskaźnik na plik.
+ */
 void load_saved_info()
 {
 	file = fopen("database.bin", "rb+");
 	must_init_get_info(file, "FILE WITH SAVED QUESTIONS");
 }
-/*to rewrite use id+1*/
-int scan_file(int number_of_question_to_read,int calling_from,int questions_number)
+/**
+ * \brief Sprawdza czy plik bazy danych jest stworzony i czy zawiera potrzebne informacje.
+ * 
+ * Jeżeli plik istnieje i zawiera konieczne informacje to zostanie otworzony w trybie czytania do pobrania
+ * pytań, jeżeli nie zawiera lub plik nie istnieje to zostanie wywołany konsolowy kreator tworzenia pytań
+ * Dodatkowo funckja obsługuje dopisywanie do istniejącego pliku bazy pytań.
+ * @param number_of_question_to_read służy do oznaczenia ilości pytań które mają zostać odczytane.
+ * @param calling_from służy do oznaczenia wykorzystania funkcji.
+ * @param questions_number nowa ilość pytań w bazie.
+ * 
+ */
+void scan_file(int number_of_question_to_read,int calling_from,int questions_number)
 {
+	/*to rewrite use id+1*/
 	if (calling_from == 1)
 	{
 		file = fopen("database.bin", "r+b");
@@ -53,7 +66,9 @@ int scan_file(int number_of_question_to_read,int calling_from,int questions_numb
 		}
 	}
 }
-
+/**
+ * \brief Funckja pobiera w trybie konsolowym pytania od użytkownika.
+ */
 void get_quest_from_usr()
 {
 	
@@ -91,7 +106,9 @@ void get_quest_from_usr()
 	printf("\n");
 	
 }
-
+/**
+ * \brief Driver obsługi dodawania pytań konsolowo.
+ */
 void add_questions()
 {
 	int questions_number;
@@ -111,7 +128,11 @@ void add_questions()
 		questions_number--;
 	}
 }
-
+/**
+ * \brief Funckja służąca do określania długości wprowadzanego pytania uwzględniająca specyficzne zliczanie.
+ * @param string wskaźnik łańcuch znaków.
+ * \return długość.
+ */
 int get_str_len(char* string)
 {
 	int counter = 0;
@@ -120,7 +141,9 @@ int get_str_len(char* string)
 	}
 	return counter+1;
 }
-
+/**
+ * \brief Pobiera dane ze struktury danych pytania i zapisuje je do pliku.
+ */
 void write_to_file()
 {
 	int struct_size;
@@ -151,6 +174,11 @@ void write_to_file()
 	fwrite(&struct_size, sizeof(int), 1, file);
 	fwrite(tmp_question.correct, sizeof(int), 1, file);
 }
+/**
+ * \brief Odczytuje z pliku.
+ * @param number_of_question_to_read liczba pytań do odczytania.
+ * \return ilość pytań w bazie.
+ */
 int read_from_file(int number_of_question_to_read)
 {
 	int* ids_tab = (int*)malloc(sizeof(int) * number_of_question_to_read);
@@ -260,6 +288,9 @@ int read_from_file(int number_of_question_to_read)
 	return number_of_struct;
 
 }
+/**
+ * \brief Zwalnia pamięć zaalakowaną na łańcuchy znaków (pytań).
+ */
 void free_all_allocated_strings()
 {
 	free(tmp_question.question);
@@ -293,7 +324,9 @@ void free_all_allocated_strings()
 		"CORRECT IF ALLOCATED STR_answer_d WAS KILLED");
 }
 
-
+/**
+ * \brief Tworzy listę pytań.
+ */
 void create_list()
 {
 	if(!head_of_questions)
@@ -305,7 +338,11 @@ void create_list()
 		create_next_list_el(&tmp_head);
 	}
 }
-
+/**
+ * \brief Tworzy pierwszy element listy pytań.
+ * @param head wskaźnik na zaalokowaną pamięć.
+ * \return wypełniony pierwszy element.
+ */
 p_questions create_head(p_questions head)
 {
 	head->id = tmp_question.id;
@@ -318,7 +355,10 @@ p_questions create_head(p_questions head)
 	head->next = NULL;
 	return head;
 }
-
+/**
+ * \brief Tworzy kolejne elementy listy pytań (prócz pierwszego).
+ * @param el podwójny wskaźnik na element.
+ */
 void create_next_list_el(ref_questions el)
 {
 	p_questions new_quest = (p_questions)malloc(sizeof(struct questions));
@@ -333,7 +373,13 @@ void create_next_list_el(ref_questions el)
 	(*el)->next = new_quest;
 	(*el) = new_quest;
 }
-
+/**
+ * \brief Sprawdza czy w tablicy zawierającej już wczytane id pytań nie znajduje się nowo odczyte pytanie
+ * co by wskazywało na ponowne odczytanie tego pytania.
+ * @param array wskaźnik na tablicę zawierającą id wczytanych pytań.
+ * @param id id do sprawdzenia czy nie zostało już pobrane.
+ * \return true jeżeli pytanie zostało już wcześniej wczytane, lub zwraca false w przeciwnym wypadku.
+ */
 bool is_id_in_array(int* array,int id)
 {
 	for(int i=0; array[i]!=0;i++)

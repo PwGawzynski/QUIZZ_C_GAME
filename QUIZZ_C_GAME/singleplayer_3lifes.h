@@ -1,5 +1,20 @@
 #pragma once
-
+/**
+ * \brief Funkcja potrzebna do obs³ugi trybu 3 ¿ycia w grze jednoosobowej.
+ *
+ * @param resolution_x rozdzielczoœæ pozioma okna programu.
+ * @param resolution_y rozdzielczoœæ pionowa okna programu.
+ * @param FPS iloœæ klatek na sekundê.
+ * @param timer podwójny wskaŸnik na timer biblioteki allegro.
+ * @param display podwójny wskaŸnik na display biblioteki allegro.
+ * @param queue podwójny wskaŸnik na kolejkê biblioteki allegro.
+ * @param main_menu podwójny wskaŸnik na t³o menu g³ównego.
+ * @param game_mode_menu podwójny wskaŸnik na t³o trybów gry.
+ * @param menu_interface podwójny wskaŸnik na t³o interfejsu gry.
+ * @param scoreBoard podwójny wskaŸnik na t³o wyników koñcowych.
+ * @param font podwójny wskaŸnik na font biblioteki allegro.
+ * @param which_menu okreœla typ przekierowañ
+ */
 void singleplayer_3lifes(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,

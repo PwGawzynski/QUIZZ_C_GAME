@@ -4,10 +4,24 @@
 #include "singleplayer_3lifes.h"
 #include "singleplayer_hardcore.h"
 #include "questions_creator.h"
-
-
-
-/* This function is responsible for forwarding to appropriate functions which serves game modes */
+/**
+ * \brief Funckja przekierowuje do odpowiednich funkcji odpowiedzialnych za dany tryb gry.
+ *
+ * @param check_returned zwraca wartoœæ klikniêtego pola.
+ * @param resolution_x rozdzielczoœæ pozioma okna programu.
+ * @param resolution_y rozdzielczoœæ pionowa okna programu.
+ * @param FPS iloœæ klatek na sekundê.
+ * @param timer podwójny wskaŸnik na timer biblioteki allegro.
+ * @param display podwójny wskaŸnik na display biblioteki allegro.
+ * @param queue podwójny wskaŸnik na kolejkê biblioteki allegro.
+ * @param main_menu podwójny wskaŸnik na t³o menu g³ównego.
+ * @param game_mode_menu podwójny wskaŸnik na t³o trybów gry.
+ * @param menu_interface podwójny wskaŸnik na t³o interfejsu gry.
+ * @param scoreBoard podwójny wskaŸnik na t³o wyników koñcowych.
+ * @param font podwójny wskaŸnik na font biblioteki allegro.
+ * @param which_menu okreœla typ przekierowañ
+ * \return numer oznaczaj¹cy wyjœcie z gry.
+ */
 int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
@@ -89,6 +103,27 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 	break;
 	}
 }
+/**
+ * \brief Funkcja zawiera pêtle bilbioteki allegro oraz obs³uguje eventy kolejki.
+ *
+ *	Tutaj odbywa siê g³owna pentla, która sprawdza pozycje myszki, klikniêcia, eventy przycisków i wyjœcia.
+ *
+ * @param resolution_x rozdzielczoœæ pozioma okna programu.
+ * @param resolution_y rozdzielczoœæ pionowa okna programu.
+ * @param FPS iloœæ klatek na sekundê.
+ * @param timer podwójny wskaŸnik na timer biblioteki allegro.
+ * @param display podwójny wskaŸnik na display biblioteki allegro.
+ * @param queue podwójny wskaŸnik na kolejkê biblioteki allegro.
+ * @param main_menu podwójny wskaŸnik na t³o menu g³ównego.
+ * @param game_mode_menu podwójny wskaŸnik na t³o trybów gry.
+ * @param menu_interface podwójny wskaŸnik na t³o interfejsu gry.
+ * @param scoreBoard podwójny wskaŸnik na t³o wyników koñcowych.
+ * @param font podwójny wskaŸnik na font biblioteki allegro.
+ * @param singleplayer typ zachowania funkcji.
+ * @param which_menu okreœla typ przekierowañ
+ * \return wartoœæ klikniêtego oznaczenia oraz 0 gdy program ma siê zakoñczyæ.
+ */
+
 int listener_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu, 
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
@@ -134,7 +169,21 @@ int listener_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 		if (done) break;
 	}	
 }
-
+/**
+ * \brief Funkcja inicjalizuje konieczne zmienne i zapêtla dzia³anie programu.
+ *
+ * @param resolution_x rozdzielczoœæ pozioma okna programu.
+ * @param resolution_y rozdzielczoœæ pionowa okna programu.
+ * @param FPS iloœæ klatek na sekundê.
+ * @param timer podwójny wskaŸnik na timer biblioteki allegro.
+ * @param display podwójny wskaŸnik na display biblioteki allegro.
+ * @param queue podwójny wskaŸnik na kolejkê biblioteki allegro.
+ * @param main_menu podwójny wskaŸnik na t³o menu g³ównego.
+ * @param game_mode_menu podwójny wskaŸnik na t³o trybów gry.
+ * @param menu_interface podwójny wskaŸnik na t³o interfejsu gry.
+ * @param scoreBoard podwójny wskaŸnik na t³o wyników koñcowych.
+ * @param font podwójny wskaŸnik na font biblioteki allegro.
+ */
 void init_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display, ALLEGRO_EVENT_QUEUE** queue,
 	ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu, ALLEGRO_BITMAP** game_mode_menu,
 	ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
