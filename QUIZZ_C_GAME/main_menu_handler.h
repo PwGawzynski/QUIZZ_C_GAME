@@ -72,7 +72,7 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 		loading();
 		load_saved_info();
 		nr_of_questions_in_base = scan_file(5, 0, 0);
-		printf("%d\n", nr_of_questions_in_base);
+		//printf("%d\n", nr_of_questions_in_base);
 		id = nr_of_questions_in_base;
 		singleplayer_trening(timer, display, queue, font, main_menu,
 		game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
@@ -82,7 +82,7 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 		loading();
 		load_saved_info();
 		nr_of_questions_in_base = scan_file(5, 0, 0);
-		printf("%d\n", nr_of_questions_in_base);
+		//printf("%d\n", nr_of_questions_in_base);
 		id = nr_of_questions_in_base;
 		singleplayer_3lifes(timer, display, queue, font, main_menu,
 		game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
@@ -92,7 +92,7 @@ int forwarding(const int check_returned, ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY*
 		loading();
 		load_saved_info();
 		nr_of_questions_in_base = scan_file(5, 0, 0);
-		printf("%d\n", nr_of_questions_in_base);
+		//printf("%d\n", nr_of_questions_in_base);
 		id = nr_of_questions_in_base;
 		singleplayer_hardcore(timer, display, queue, font, main_menu,
 		game_mode_menu, menu_interface, scoreBoard, resolution_x, resolution_y, FPS, which_menu);
@@ -145,7 +145,7 @@ int listener_menu(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 			mouse_x = event.mouse.x;
 			mouse_y = event.mouse.y;
 			check_returned = check_event_click(&mouse_x, &mouse_y, which_menu);
-			printf(" cr: %d \n", check_returned);
+			//printf(" cr: %d \n", check_returned);
 			/* Below check is for single player function which has permission to call listener
 			function as her own. */
 			if (check_returned >= 8 && check_returned <= 11) return check_returned;

@@ -76,7 +76,7 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 			/*CHECK WHICH ELEMENT'S BEEN CLICKED*/
 			check_returned = check_event_click(&mouse_x, &mouse_y, &which_menu);
 			/*DEBUG INFO*/
-			printf("CR: %d\n", check_returned);
+			//printf("CR: %d\n", check_returned);
 
 			/*IF BACK TO MENU'S BEEN CLICKED*/
 			if (check_returned==6)
@@ -211,7 +211,7 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 					al_flip_display();
 					tmp_question.correct = "A";
 				}
-				printf("na uj dwa razy");
+				
 			}
 			else if (check_returned == 33)
 			{
@@ -273,7 +273,7 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 					al_flip_display();
 					tmp_question.correct = "D";
 				}
-				printf("na uj dwa razy");
+				
 			}
 
 			quest_writter(&input_quest, font_position_y, resolution_x, resolution_y, 0);
@@ -289,7 +289,7 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 			unichar = event.keyboard.unichar;
 			
 			/*DEBUG KEY CODE*/
-			printf("%d", event.keyboard.unichar);
+			//printf("%d", event.keyboard.unichar);
 
 			/*FIND WHICH KEY'S BEEN TYPED*/
 			if (unichar >= 32 )
@@ -373,7 +373,7 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 				/*FILLING QUESTION STR*/
 				if (which_str == 0)
 				{
-					printf("\n%d", counter);
+					//printf("\n%d", counter);
 					al_ustr_remove_chr(input_quest, counter);
 					al_draw_bitmap(question_creator, 0, 0, 0);
 				}
@@ -407,7 +407,7 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 				quest_writter(&input_answer_c, font_position_y, resolution_x, resolution_y, 3);
 				quest_writter(&input_answer_d, font_position_y, resolution_x, resolution_y, 4);
 				counter--;
-				printf("\n%d", counter);
+				//printf("\n%d", counter);
 				al_flip_display();
 			}
 			break;

@@ -62,7 +62,7 @@ int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 			mouse_x = event.mouse.x;
 			mouse_y = event.mouse.y;
 			check_returned = check_event_click(&mouse_x, &mouse_y, which_menu);
-			printf(" cr: %d \n", check_returned);
+			//printf(" cr: %d \n", check_returned);
 			if (check_returned >= 8 && check_returned <= 11) return check_returned;
 			if (check_returned == 0) 
 			{
@@ -86,7 +86,7 @@ int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 				load_saved_info();
 				//zmienić ilość pytań 
 				nr_of_questions_in_base = scan_file((2 * nr_players)+1, 0, 0);
-				printf("%d\n", nr_of_questions_in_base);
+				//printf("%d\n", nr_of_questions_in_base);
 				id = nr_of_questions_in_base;
 				
 				multiplayer_trening(timer, display, queue, font, main_menu,
@@ -99,7 +99,7 @@ int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 				load_saved_info();
 				//zmienić ilość pytań 
 				nr_of_questions_in_base = scan_file((6 * nr_players)+1, 0, 0);
-				printf("%d\n", nr_of_questions_in_base);
+				//printf("%d\n", nr_of_questions_in_base);
 				id = nr_of_questions_in_base;
 				
 				multiplayer_3lifes(timer, display, queue, font, main_menu,
@@ -112,7 +112,7 @@ int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 				load_saved_info();
 				//zmienić ilość pytań 
 				nr_of_questions_in_base = scan_file((5 * nr_players)+1, 0, 0);
-				printf("%d\n", nr_of_questions_in_base);
+				//printf("%d\n", nr_of_questions_in_base);
 				id = nr_of_questions_in_base;
 				
 				multiplayer_hardcore(timer, display, queue, font, main_menu,

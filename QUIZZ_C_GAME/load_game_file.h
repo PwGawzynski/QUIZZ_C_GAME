@@ -75,7 +75,7 @@ void get_quest_from_usr()
 	// clears stdin buffer from \n char which has left 
 	fseek(stdin, 0, SEEK_END);
 	
-	printf("Wprowadz pytanie: \n\n");
+	/*printf("Wprowadz pytanie: \n\n");
 	tmp_question.question = read_str();
 
 	printf("\n");
@@ -103,7 +103,7 @@ void get_quest_from_usr()
 	printf("Wprowadz oznaczenie poprawnej odpowiedzi: ");
 	scanf("%c", tmp_question.correct);
 
-	printf("\n");
+	printf("\n");*/
 	
 }
 /**
@@ -112,7 +112,7 @@ void get_quest_from_usr()
 void add_questions()
 {
 	int questions_number;
-	printf(" Ile pytan chcesz dodac: ");
+	//printf(" Ile pytan chcesz dodac: ");
 	scanf("%d", &questions_number);
 	fwrite(&questions_number, sizeof(int), 1, file);
 	while(questions_number)
@@ -219,37 +219,37 @@ int read_from_file(int number_of_question_to_read)
 		
 		
 		
-		printf("%d\n", tmp_question.id);
+		//printf("%d\n", tmp_question.id);
 		
 		tmp_question.question = (char*)malloc(struct_size * sizeof(char));
 		fread(tmp_question.question, struct_size, 1, file);
-		printf("%s\n", tmp_question.question);
+		//printf("%s\n", tmp_question.question);
 		
 		fread(&struct_size, sizeof(int), 1, file);
 		tmp_question.answer_a= (char*)malloc(struct_size );
 		fread(tmp_question.answer_a, 1, struct_size, file);
-		printf("%s\n", tmp_question.answer_a);
+		//printf("%s\n", tmp_question.answer_a);
 
 		fread(&struct_size, sizeof(int), 1, file);
 		tmp_question.answer_b = (char*)malloc(struct_size );
 		fread(tmp_question.answer_b, 1, struct_size, file);
-		printf("%s\n", tmp_question.answer_b);
+		//printf("%s\n", tmp_question.answer_b);
 
 		fread(&struct_size, sizeof(int), 1, file);
 		tmp_question.answer_c = (char*)malloc(struct_size );
 		fread(tmp_question.answer_c, 1, struct_size, file);
-		printf("%s\n", tmp_question.answer_c);
+		//printf("%s\n", tmp_question.answer_c);
 
 		fread(&struct_size, sizeof(int), 1, file);
 		tmp_question.answer_d = (char*)malloc(struct_size );
 		fread(tmp_question.answer_d, 1, struct_size, file);
-		printf("%s\n", tmp_question.answer_d);
+		//printf("%s\n", tmp_question.answer_d);
 
 		fread(&struct_size, sizeof(int), 1, file);
 		tmp_question.correct = (char*)malloc(struct_size );
 		fread(tmp_question.correct, sizeof(int), 1, file);
-		printf("%c\n", tmp_question.correct[0]);
-		printf("\n");
+		//printf("%c\n", tmp_question.correct[0]);
+		//printf("\n");
 		//break if all was read 
 		if (ids_tab[number_of_question_to_read-1])break;
 		//set ids in arr of ids
