@@ -1,5 +1,7 @@
 ﻿#pragma once
-
+/**
+ * \brief Struktura potrzebna do przechowywania pojedynczego pytania.
+ */
 struct questions
 {
 	int id;
@@ -11,12 +13,19 @@ struct questions
 	char* correct;
 	struct questions* next;
 };
-
+/**
+ * \brief Własny typ wskaźnika na strukturę.
+ */
 typedef struct questions* p_questions;
+/**
+ * \brief Własny typ podwójnego wskaźnika na strukturę.
+ */
 typedef struct questions** ref_questions;
 p_questions head_of_questions;
 p_questions tmp_head;
-
+/**
+ * \brief Struktura potrzebna do wczytywania pytań.
+ */
 struct questions_tmp
 {
 	int id;
@@ -27,13 +36,19 @@ struct questions_tmp
 	char* answer_d;
 	char* correct;
 };
-
+/**
+ * \brief Własny typ wskaźnika na strukturę.
+ */
 typedef struct questions_tmp* p_questions_tmp;
+/**
+ * \brief Własny typ podwójnego wskaźnika na strukturę.
+ */
 typedef struct questions_tmp** ref_questions_tmp;
 
 struct questions_tmp tmp_question;
-
-
+/**
+ * \brief Inicjalizuje pamięć na łańcuch znaków pytania.
+ */
 void load_mem_for_questions_ptrs()
 {
 	tmp_question.question = (const char*)malloc(1); 
@@ -45,6 +60,9 @@ void load_mem_for_questions_ptrs()
 
 	
 }
+/**
+ * \brief Czyści pamięć zaalokowaną dla łańcucha znaków pytań.
+ */
 void kill_mem_for_questions_ptrs()
 {
 	free(tmp_question.question);
@@ -60,7 +78,9 @@ void kill_mem_for_questions_ptrs()
 	free(tmp_question.correct);
 	tmp_question.correct = NULL;
 }
-
+/**
+ * \brief Usuwa zaalokowaną pamięć dla listy pytań.
+ */
 void kill_quest_list()
 {
 	while(head_of_questions)
@@ -73,7 +93,9 @@ void kill_quest_list()
 	}
 	
 }
-
+/**
+ * \brief Struktura przechowująca dane graczy w trybie multiplayer.
+ */
 struct players
 {
 	int player_nr;
@@ -83,4 +105,7 @@ struct players
 };
 
 struct players* player = NULL;
+/**
+ * \brief Własny typ wskaźnika na strukturę.
+ */
 typedef struct players* p_player;

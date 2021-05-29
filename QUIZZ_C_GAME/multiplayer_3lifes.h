@@ -5,7 +5,12 @@ int main_loop(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,
 	unsigned int* resolution_x, unsigned int* resolution_y, const float* FPS, int* which_menu, int nr_players);
-
+/**
+ * \brief Przestawia wskaźnik na gracza jeżeli stracił on swoje życia.
+ *
+ * @param nr_players ilość graczy.
+ * \return true jeżeli dany gracz ma jeszcze życia do wykorzystania, false w przeciwnym wypadku. 
+ */
 bool set_proper_player(int nr_players)
 {
 	while ((player=player->next) && nr_players)
@@ -17,6 +22,9 @@ bool set_proper_player(int nr_players)
 	return false;
 	
 }
+/**
+ * \brief Przypisuje życia poszczególnym graczom.
+ */
 void set_lifes()
 {
 	while(player->lives!=3)
@@ -25,6 +33,23 @@ void set_lifes()
 		player = player->next;
 	}
 }
+/**
+ * \brief Funkcja potrzebna do obsługi trybu 3 życia w grze wieloosobowej.
+ *
+ * @param resolution_x rozdzielczość pozioma okna programu.
+ * @param resolution_y rozdzielczość pionowa okna programu.
+ * @param FPS ilość klatek na sekundę.
+ * @param timer podwójny wskaźnik na timer biblioteki allegro.
+ * @param display podwójny wskaźnik na display biblioteki allegro.
+ * @param queue podwójny wskaźnik na kolejkę biblioteki allegro.
+ * @param main_menu podwójny wskaźnik na tło menu głównego.
+ * @param game_mode_menu podwójny wskaźnik na tło trybów gry.
+ * @param menu_interface podwójny wskaźnik na tło interfejsu gry.
+ * @param scoreBoard podwójny wskaźnik na tło wyników końcowych.
+ * @param font podwójny wskaźnik na font biblioteki allegro.
+ * @param which_menu określa typ przekierowań.
+ * @param nr_players ilość graczy.
+ */
 void multiplayer_3lifes(ALLEGRO_TIMER** timer, ALLEGRO_DISPLAY** display,
 	ALLEGRO_EVENT_QUEUE** queue, ALLEGRO_FONT** font, ALLEGRO_BITMAP** main_menu,
 	ALLEGRO_BITMAP** game_mode_menu, ALLEGRO_BITMAP** menu_interface, ALLEGRO_BITMAP** scoreBoard,

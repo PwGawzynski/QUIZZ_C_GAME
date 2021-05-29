@@ -1,4 +1,8 @@
 ﻿#pragma once
+/**
+ * \brief Funkcja odczytująca ciąg znaków z konsoli i alokująca pamięć dla niego.
+ * \return wskaźnik na ciąg znaków.
+ */
 char* read_str()
 {
 	char buffer[50];

@@ -1,6 +1,13 @@
 ﻿#pragma once
 #include "questions_string_writter.h"
-
+/**
+ * \brief Funckja zawiera pętlę kreatora pytań.
+ * 
+ * Nasłuchuje kliknięcia przycisków, reaguje odpowiednio na nie, oraz daje możliwość zapisu utworzonego pytania.
+ * @param resolution_x rozdzielczość pozioma okna programu.
+ * @param resolution_y rozdzielczość pionowa okna programu.
+ * @param queue podwójny wskaźnik na kolejkę biblioteki allegro.
+ */
 void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE** queue)
 {
 	/*INITIALIZATION BACKGROUND PTR AND DRAW IT ON THE SCREEN*/
@@ -416,9 +423,14 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 	al_destroy_font(font);
 }
 
-
+/**
+ * \brief Fuckja buforująca dla listener_creator.
+ *
+ * @param resolution_x rozdzielczość pozioma okna programu.
+ * @param resolution_y rozdzielczość pionowa okna programu.
+ * @param queue podwójny wskaźnik na kolejkę biblioteki allegro.
+ */
 void allegro_questions_creator(int* resolution_x, int* resolution_y,ALLEGRO_EVENT_QUEUE** queue)
 {
-	int tmp;
-	listener_creator(resolution_x, resolution_y,queue);
+	listener_creator(resolution_x, resolution_y, queue);
 }
