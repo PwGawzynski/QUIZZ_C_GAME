@@ -34,7 +34,7 @@ void load_saved_info()
  * @param questions_number nowa ilość pytań w bazie.
  * 
  */
-void scan_file(int number_of_question_to_read,int calling_from,int questions_number)
+int scan_file(int number_of_question_to_read,int calling_from,int questions_number)
 {
 	/*to rewrite use id+1*/
 	if (calling_from == 1)
