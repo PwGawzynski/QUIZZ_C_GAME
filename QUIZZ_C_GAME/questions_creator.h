@@ -225,7 +225,6 @@ void listener_creator(int* resolution_x, int* resolution_y, ALLEGRO_EVENT_QUEUE*
 					al_flip_display();
 					tmp_question.correct = "B";
 				}
-				printf("na uj dwa razy");
 			}
 			else if (check_returned == 44)
 			{
